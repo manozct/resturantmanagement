@@ -15,7 +15,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/textViewName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name"
@@ -26,11 +26,94 @@
                 android:id="@+id/nameText"
                 android:layout_width="match_parent"
                 android:layout_height="30dp" />
+
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textViewAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                tools:layout_editor_absoluteX="53dp"
+                tools:layout_editor_absoluteY="29dp" />
+
+            <EditText
+                android:id="@+id/addressText"
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/dobTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date Of Birth"
+                tools:layout_editor_absoluteX="53dp"
+                tools:layout_editor_absoluteY="29dp" />
+
+            <EditText
+                android:id="@+id/dobText"
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/ssnTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Social Seurity Number"
+                tools:layout_editor_absoluteX="53dp"
+                tools:layout_editor_absoluteY="29dp" />
+
+            <EditText
+                android:id="@+id/ssnText"
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/hireDayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HireDay"
+                tools:layout_editor_absoluteX="53dp"
+                tools:layout_editor_absoluteY="29dp" />
+
+            <EditText
+                android:id="@+id/hireDayText"
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+
         </TableRow>
 
         <Button
             android:id="@+id/submitBtn"
-            android:text="Submit"/>
+            android:text="Submit" />
     </TableLayout>
 
 </LinearLayout>
