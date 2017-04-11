@@ -14,8 +14,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Inventoy Name"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="29dp" />
+                />
 
             <EditText
                 android:id="@+id/inventoryNameText"
@@ -31,8 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Price"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="29dp" />
+                />
 
             <EditText
                 android:id="@+id/priceText"
