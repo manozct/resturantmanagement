@@ -6,5 +6,9 @@ package rms.manozct.resturantmanagement.model;
 
 public class Bill {
     private Integer billNo;
+    private Order order;
+    private double tax;
+    private double serviceCharge;
+    
 
 }

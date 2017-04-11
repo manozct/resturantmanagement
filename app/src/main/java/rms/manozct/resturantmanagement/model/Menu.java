@@ -8,6 +8,7 @@ public class Menu {
     private Integer menuId;
     private String menuName;
 
+
     public Integer getMenuId() {
         return menuId;
     }
