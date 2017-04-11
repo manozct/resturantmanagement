@@ -10,18 +10,18 @@ public abstract class Employee {
     private Date dob;
     private String cNo;
     private String ssn;
-    private Double salary;
+//    private Double salary;
     private Date hireDay;
 
     Employee(Integer empId,String empName,String add,Date dob,
-             String cNo,String ssn,Double salary,Date hd){
+             String cNo,String ssn,Date hd){
         this.empId=empId;
         this.empName=empName;
         this.address=add;
         this.dob=dob;
         this.cNo=cNo;
         this.ssn=ssn;
-        this.salary=salary;
+//        this.salary=salary;
         this.hireDay=hd;
     }
     public String getAddress() {
@@ -56,13 +56,13 @@ public abstract class Employee {
         this.ssn = ssn;
     }
 
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
+//    public double getSalary() {
+//        return salary;
+//    }
+//
+//    public void setSalary(double salary) {
+//        this.salary = salary;
+//    }
 
     public Date getHireDay() {
         return hireDay;
