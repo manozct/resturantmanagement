@@ -1,94 +1,91 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="rms.manozct.resturantmanagement.fragment.EmployeeFragment">
 
-    <TableLayout
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
 
-        <TableRow
-            >
-            <TextView
-                style="@style/TextTableRow"
-                android:text="Name"/>
-            <EditText
-                android:id="@+id/nameTxt"
-                android:layout_height="match_parent"
-                android:layout_width="wrap_content"/>
-        </TableRow>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        style="@style/info_text_view"
+        android:text="Name" />
 
-        <TableRow>
-            <TextView
-                style="@style/TextTableRow"
-                android:text="Address"/>
-            <EditText
-                android:id="@+id/addressTxt"
-                android:layout_height="match_parent"
-                android:layout_width="wrap_content"/>
-        </TableRow>
+    <EditText
+        android:id="@+id/nameTxt"
+        style="@style/info_edit_text"
+        />
 
-        <TableRow>
-            <TextView
-                style="@style/TextTableRow"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="Date of Birth"/>
-            <DatePicker
-                android:id="@+id/dob"
-                android:layout_height="match_parent"
-                android:layout_width="wrap_content"/>
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="Contact"/>
-            <EditText
-                android:id="@+id/contactTxt"
-                android:layout_height="match_parent"
-                android:layout_width="wrap_content"
-                android:inputType="phone"/>
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="Social Security Number"/>
-            <EditText
-                android:id="@+id/snnTxt"
-                android:layout_height="match_parent"
-                android:layout_width="wrap_content"
-                android:inputType="number"/>
-        </TableRow>
+    <TextView
+        style="@style/info_text_view"
+        android:text="Address" />
 
-        <TableRow>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="Hire Date"/>
-            <DatePicker
-                android:id="@+id/hireDate"
-                android:layout_height="match_parent"
-                android:layout_width="wrap_content"/>
-        </TableRow>
+    <EditText
+        style="@style/info_edit_text"
+        android:id="@+id/addressTxt"
+        />
 
-        <TableRow>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="Position"/>
-            <Spinner
-                android:id="@+id/positionSpinner"
-                android:layout_height="match_parent"
-                android:layout_width="wrap_content"/>
-        </TableRow>
 
-    </TableLayout>
-
-    <Button android:id="@+id/submitBtn"
-        android:layout_width="match_parent"
+    <TextView
+        style="@style/info_text_view"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Submit"/>
+        android:text="Date of Birth" />
+
+    <EditText
+        style="@style/info_edit_text"
+        android:id="@+id/dob"
+        android:inputType="date"
+
+        />
+
+    <TextView
+        style="@style/info_text_view"
+        android:text="Contact" />
+
+    <EditText
+        style="@style/info_edit_text"
+        android:id="@+id/contactTxt"
+        android:inputType="phone" />
+
+    <TextView
+        style="@style/info_text_view"
+        android:text="Social Security Number" />
+
+    <EditText
+        style="@style/info_edit_text"
+        android:id="@+id/snnTxt"
+        android:inputType="number" />
+
+    <TextView
+        style="@style/info_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hire Date" />
+
+    <EditText
+        style="@style/info_edit_text"
+        android:id="@+id/hireDate"
+        android:inputType="date" />
+
+    <TextView
+        style="@style/info_text_view"
+        android:text="Position" />
+
+    <Spinner
+        style="@style/info_edit_text"
+        android:id="@+id/positionSpinner"
+        android:layout_height="match_parent" />
+
+
+    <Button
+        style="@style/ButtonNormalSubmit"
+        android:id="@+id/submitBtn"
+        android:text="Submit"
+        android:layout_marginBottom="10dp"/>
 </LinearLayout>
+
+</ScrollView>

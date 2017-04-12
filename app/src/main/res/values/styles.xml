@@ -35,4 +35,39 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="info_text_view" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:padding">7dp</item>
+        <item name="android:layout_marginTop">7dp</item>
+    </style>
+
+    <style name="info_edit_text" parent="android:style/Widget.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/heading_black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:padding">7dp</item>
+    </style>
+
+
+    <style name="ButtonNormalSubmit" parent="@android:style/Widget.Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/blue_unselected</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize" >15sp</item>
+        <item name="android:textAllCaps" >true</item>
+        <item name="android:focusable" >true</item>
+        <item name="android:clickable" >true</item>
+        <item name="android:layout_marginLeft" >7dp</item>
+        <item name="android:layout_marginRight" >7dp</item>
+        <item name="android:layout_marginTop" >7dp</item>
+    </style>
+
     </resources>
