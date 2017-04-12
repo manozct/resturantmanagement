@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import rms.manozct.resturantmanagement.R;
 import rms.manozct.resturantmanagement.fragment.EmployeeFragment;
+import rms.manozct.resturantmanagement.fragment.MenuFragment;
 
 public class EmployeeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, EmployeeFragment.OnFragmentInteractionListener {
     private DrawerLayout drawer;

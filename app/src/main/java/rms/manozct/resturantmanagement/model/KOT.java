@@ -8,11 +8,16 @@ public class KOT {
     private Integer kotId;
     private Integer quantity;
     private Integer waiterId;
+    private OrderCheckList checkList;
 
     public KOT(Integer kotId, Integer quantity, Integer waiterId) {
         this.kotId = kotId;
         this.quantity = quantity;
         this.waiterId = waiterId;
+    }
+    public void createOrderCheckList(Integer orderId){
+
+        new OrderCheckList();
     }
 
     public Integer getKotId() {
