@@ -7,8 +7,13 @@ package rms.manozct.resturantmanagement.model;
 public class Menu {
     private Integer menuId;
     private String menuName;
+    public static Integer id=100;
+    Menu(){
 
-
+    }
+    Menu(String menuName){
+        this.menuName=menuName;
+    }
     public Integer getMenuId() {
         return menuId;
     }

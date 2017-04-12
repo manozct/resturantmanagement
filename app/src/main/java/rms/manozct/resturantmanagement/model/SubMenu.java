@@ -8,7 +8,7 @@ public class SubMenu extends Menu {
     private Integer subMenuId;
     private Integer subMenuName;
     private Double price;
-
+    
     public Integer getSubMenuId() {
         return subMenuId;
     }
