@@ -1,0 +1,29 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="rms.manozct.resturantmanagement.fragment.InventoryFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TableLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <TableRow>
+            <TextView
+                style="@style/TextTableRow"
+                android:text="Item Name"/>
+            <EditText
+                android:id="@+id/txtInventoryItem"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"/>
+        </TableRow>
+
+    </TableLayout>
+    <Button android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit"/>
+
+
+</LinearLayout>
