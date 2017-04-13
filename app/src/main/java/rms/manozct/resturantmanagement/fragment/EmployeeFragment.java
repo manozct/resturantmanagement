@@ -7,10 +7,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import rms.manozct.resturantmanagement.R;
 
@@ -29,8 +34,10 @@ public class EmployeeFragment extends Fragment {
     private EditText addressText;
     private EditText contactNoText;
     private EditText ssnText;
-    private DatePicker dobDate;
-    private DatePicker hireDate;
+    private EditText dobDate;
+    private EditText hireDate;
+    private Spinner spinnerPosition;
+
 
     private Button submitBtn;
     public EmployeeFragment() {
@@ -53,9 +60,24 @@ public class EmployeeFragment extends Fragment {
         contactNoText = (EditText) view.findViewById(R.id.contactTxt);
         ssnText = (EditText) view.findViewById(R.id.snnTxt);
 
-        dobDate = (DatePicker) view.findViewById(R.id.dob);
+        dobDate = (EditText) view.findViewById(R.id.dob);
 
         submitBtn = (Button) view.findViewById(R.id.submitBtn);
+        spinnerPosition=(Spinner)view.findViewById(R.id.positionSpinner);
+
+        List<String>positions=new ArrayList<String>();
+        positions.add("Manager");
+        positions.add("Cashier");
+        positions.add("Waiter");
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,positions);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinnerPosition.setAdapter(dataAdapter);
+
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override

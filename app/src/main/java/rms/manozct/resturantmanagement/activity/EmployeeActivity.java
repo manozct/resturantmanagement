@@ -23,8 +23,10 @@ import android.widget.Toast;
 
 import rms.manozct.resturantmanagement.R;
 import rms.manozct.resturantmanagement.fragment.EmployeeFragment;
+import rms.manozct.resturantmanagement.fragment.MenuFragment;
+import rms.manozct.resturantmanagement.fragment.SubMenuFragment;
 
-public class EmployeeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, EmployeeFragment.OnFragmentInteractionListener {
+public class EmployeeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, EmployeeFragment.OnFragmentInteractionListener,MenuFragment.OnFragmentInteractionListener {
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     private FragmentManager fragmentManager;
@@ -117,6 +119,11 @@ public class EmployeeActivity extends AppCompatActivity implements NavigationVie
             case R.id.nav_cart:
                 replaceFragment(new EmployeeFragment());
                 break;
+            case R.id.nav_wishlist:
+                replaceFragment(new MenuFragment());
+                break;
+
+
         }
     }
 

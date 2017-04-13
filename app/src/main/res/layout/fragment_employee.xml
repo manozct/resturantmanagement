@@ -5,6 +5,7 @@
     android:orientation="vertical"
     tools:context="rms.manozct.resturantmanagement.fragment.EmployeeFragment">
 
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -34,10 +35,11 @@
         android:layout_height="wrap_content"
         android:text="Date of Birth" />
 
-    <DatePicker
+    <EditText
         style="@style/info_edit_text"
         android:id="@+id/dob"
-        android:layout_height="50dp"
+        android:inputType="date"
+
         />
 
     <TextView
@@ -64,10 +66,10 @@
         android:layout_height="wrap_content"
         android:text="Hire Date" />
 
-    <DatePicker
+    <EditText
         style="@style/info_edit_text"
         android:id="@+id/hireDate"
-        android:layout_height="50dp" />
+        android:inputType="date" />
 
     <TextView
         style="@style/info_text_view"
