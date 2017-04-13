@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rms.manozct.resturantmanagement.model.Employee;
+import rms.manozct.resturantmanagement.model.Role;
 import rms.manozct.resturantmanagement.util.Util;
 
 public class DbHelper {
@@ -51,11 +52,13 @@ public class DbHelper {
 			Employee emp= new Employee();
 			emp.setEmpId(myCursor.getInt(myCursor.getColumnIndex(RmsDb.EMP_ID)));
 			emp.setEmpName(myCursor.getString(myCursor.getColumnIndex(RmsDb.EMP_NAME)));
+			emp.setEmpUserName(myCursor.getString(myCursor.getColumnIndex(RmsDb.EMP_USERNAME)));
 			emp.setAddress(myCursor.getString(myCursor.getColumnIndex(RmsDb.ADDRESS)));
 			emp.setDob(Util.convertStringToDate(myCursor.getString(myCursor.getColumnIndex(RmsDb.DOB))));
 			emp.setcNo(myCursor.getString(myCursor.getColumnIndex(RmsDb.CONTACT_NO)));
 			emp.setSsn(myCursor.getString(myCursor.getColumnIndex(RmsDb.SSN)));
 			emp.setHireDay(Util.convertStringToDate(myCursor.getString(myCursor.getColumnIndex(RmsDb.HIRE_DAY))));
+
 			employees.add(emp);
 			myCursor.moveToNext();
 		}

@@ -20,12 +20,13 @@ import android.widget.Toast;
 
 import rms.manozct.resturantmanagement.R;
 import rms.manozct.resturantmanagement.fragment.EmployeeFragment;
+import rms.manozct.resturantmanagement.fragment.EmployeeListFragment;
 import rms.manozct.resturantmanagement.fragment.MenuFragment;
 import rms.manozct.resturantmanagement.fragment.SubMenuFragment;
 import rms.manozct.resturantmanagement.model.Employee;
 import rms.manozct.resturantmanagement.model.Role;
 
-public class EmployeeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, EmployeeFragment.OnFragmentInteractionListener,MenuFragment.OnFragmentInteractionListener {
+public class EmployeeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, EmployeeFragment.OnFragmentInteractionListener,MenuFragment.OnFragmentInteractionListener,EmployeeListFragment.OnFragmentInteractionListener {
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     private FragmentManager fragmentManager;
@@ -126,6 +127,9 @@ public class EmployeeActivity extends AppCompatActivity implements NavigationVie
                 break;
             case R.id.nav_wishlist:
                 replaceFragment(new MenuFragment());
+                break;
+            case R.id.nav_category:
+                replaceFragment(new EmployeeListFragment());
                 break;
 
 

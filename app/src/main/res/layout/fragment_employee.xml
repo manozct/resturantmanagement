@@ -18,7 +18,23 @@
         android:id="@+id/nameTxt"
         style="@style/info_edit_text"
         />
+    <TextView
+        style="@style/info_text_view"
+        android:text="User Name" />
 
+    <EditText
+        android:id="@+id/userNameTxt"
+        style="@style/info_edit_text"
+        />
+    <TextView
+        style="@style/info_text_view"
+        android:text="Password" />
+
+    <EditText
+        android:id="@+id/passwordTxt"
+        style="@style/info_edit_text"
+        android:inputType="textWebPassword"
+        />
     <TextView
         style="@style/info_text_view"
         android:text="Address" />
