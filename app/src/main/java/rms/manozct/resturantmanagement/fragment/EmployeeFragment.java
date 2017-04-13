@@ -18,6 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rms.manozct.resturantmanagement.R;
+import rms.manozct.resturantmanagement.database.DbHelper;
+import rms.manozct.resturantmanagement.database.RmsDb;
+import rms.manozct.resturantmanagement.model.Employee;
+import rms.manozct.resturantmanagement.util.Util;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -82,12 +86,30 @@ public class EmployeeFragment extends Fragment {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = nameText.getText().toString();
-                Toast.makeText(EmployeeFragment.this.getActivity(), "Hello "+name, Toast.LENGTH_SHORT).show();
+            submitData();
             }
         });
 
         return view;
+    }
+
+    public void submitData(){
+        Employee employee = new Employee();
+        //Getting input from user and setting to employee model
+        employee.setEmpName(nameText.getText().toString());
+        employee.setHireDay(Util.convertStringToDate(hireDate.getText().toString()));
+        //TODO other setter
+        DbHelper dbHelper = new DbHelper(getActivity());
+        dbHelper.write();
+        try {
+            dbHelper.insertEmployee(employee);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }finally {
+            dbHelper.close();
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event

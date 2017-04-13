@@ -21,6 +21,9 @@ import android.widget.Toast;
 import rms.manozct.resturantmanagement.R;
 import rms.manozct.resturantmanagement.fragment.EmployeeFragment;
 import rms.manozct.resturantmanagement.fragment.MenuFragment;
+import rms.manozct.resturantmanagement.fragment.SubMenuFragment;
+import rms.manozct.resturantmanagement.model.Employee;
+import rms.manozct.resturantmanagement.model.Role;
 
 public class EmployeeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, EmployeeFragment.OnFragmentInteractionListener,MenuFragment.OnFragmentInteractionListener {
     private DrawerLayout drawer;
@@ -29,6 +32,8 @@ public class EmployeeActivity extends AppCompatActivity implements NavigationVie
     private boolean doubleBackToExitPressedOnce = false;
 
     private Toolbar toolbar;
+
+    public static Employee loginEmployee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +115,11 @@ public class EmployeeActivity extends AppCompatActivity implements NavigationVie
     public void changeLayout(int id){
         switch (id) {
             case R.id.nav_account:
-                replaceFragment(new EmployeeFragment());
+                //if (Role.MANAGER==loginEmployee.getRole()){
+                    replaceFragment(new EmployeeFragment());
+                /*}else {
+                    Toast.makeText(this, "You are not authorized to Add user", Toast.LENGTH_SHORT).show();
+                }*/
                 break;
             case R.id.nav_cart:
                 replaceFragment(new EmployeeFragment());

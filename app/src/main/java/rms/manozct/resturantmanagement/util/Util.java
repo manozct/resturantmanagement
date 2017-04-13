@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by Crawlers on 4/12/2017.
@@ -15,12 +16,19 @@ public class Util {
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
         Date startDate = null;
         try {
-            startDate = df.parse(startDateString);
-            String newDateString = df.format(startDate);
-            System.out.println(newDateString);
+            if (startDateString!=null)
+            {
+                startDate = df.parse(startDateString);
+                String newDateString = df.format(startDate);
+                System.out.println(newDateString);
+            }
         } catch (ParseException e) {
             e.printStackTrace();
         }
         return startDate;
+    }
+
+    public static String getRandomId(){
+        return UUID.randomUUID().toString().substring(0,7);
     }
 }

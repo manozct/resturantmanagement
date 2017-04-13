@@ -1,6 +1,7 @@
 package rms.manozct.resturantmanagement.model;
 import java.util.Date;
 
+import rms.manozct.resturantmanagement.database.DbHelper;
 
 
 public class Employee {
@@ -10,21 +11,52 @@ public class Employee {
     private Date dob;
     private String cNo;
     private String ssn;
-//    private Double salary;
+    private Double salary;
     private Date hireDay;
+    private Role role;
 
     public Employee(){
 
     }
 
-    Employee(Integer empId,String empName,String add,Date dob,
-             String cNo,String ssn,Date hd){
+    public Double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Double salary) {
+        this.salary = salary;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Employee(Integer empId, String empName, String address, Date dob, String cNo, String ssn, Double salary, Date hireDay, Role role) {
+        this.empId = empId;
+        this.empName = empName;
+        this.address = address;
+        this.dob = dob;
+        this.cNo = cNo;
+        this.ssn = ssn;
+        this.salary = salary;
+
+        this.hireDay = hireDay;
+        this.role = role;
+    }
+
+    Employee(Integer empId, String empName, String add, Date dob,
+             String cNo, String ssn, Date hd){
         this.empId=empId;
         this.empName=empName;
         this.address=add;
         this.dob=dob;
         this.cNo=cNo;
         this.ssn=ssn;
+
 //        this.salary=salary;
         this.hireDay=hd;
     }
@@ -100,4 +132,6 @@ public class Employee {
     public void setName(String name) {
         this.empName = name;
     }
+
+
 }
