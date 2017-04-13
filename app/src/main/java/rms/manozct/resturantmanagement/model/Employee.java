@@ -3,7 +3,7 @@ import java.util.Date;
 
 
 
-public abstract class Employee {
+public class Employee {
     private Integer empId;
     private String empName;
     private String address;
@@ -12,6 +12,10 @@ public abstract class Employee {
     private String ssn;
 //    private Double salary;
     private Date hireDay;
+
+    public Employee(){
+
+    }
 
     Employee(Integer empId,String empName,String add,Date dob,
              String cNo,String ssn,Date hd){
