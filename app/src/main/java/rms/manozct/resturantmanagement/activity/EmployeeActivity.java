@@ -132,6 +132,10 @@ public class EmployeeActivity extends AppCompatActivity
                 replaceFragment(new MainFragment());
                 break;
 
+            case R.id.nav_wishlist:
+                replaceFragment(new MenuFragment());
+                break;
+
         }
     }
 
