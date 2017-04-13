@@ -38,7 +38,7 @@ public final class RmsDb extends SQLiteOpenHelper{
 												DOB + " TEXT, " +
 												CONTACT_NO + " TEXT, " +
 												SSN + " TEXT, " +
-												HIRE_DAY + " TEXT" +
+												HIRE_DAY + " TEXT, " +
 												POSITION + " TEXT" +
 												")";
 

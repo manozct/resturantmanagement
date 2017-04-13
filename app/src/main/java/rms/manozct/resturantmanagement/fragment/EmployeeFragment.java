@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rms.manozct.resturantmanagement.R;
+import rms.manozct.resturantmanagement.activity.EmployeeActivity;
 import rms.manozct.resturantmanagement.database.DbHelper;
 import rms.manozct.resturantmanagement.database.RmsDb;
 import rms.manozct.resturantmanagement.model.Employee;
@@ -91,10 +93,22 @@ public class EmployeeFragment extends Fragment {
             @Override
             public void onClick(View view) {
             submitData();
+                Toast.makeText(getActivity(), "Data saved Successfully", Toast.LENGTH_SHORT).show();
+
+                replaceFragment(new EmployeeListFragment());
+
             }
         });
 
         return view;
+    }
+    public void replaceFragment(Fragment newFragment){
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_frame, newFragment);
+        String backStateName = newFragment.getClass().getName();
+        System.out.println("Fragment tag:"+backStateName);
+        fragmentTransaction.addToBackStack(backStateName);    //Add previous state to backstack
+        fragmentTransaction.commit();
     }
 
     public void submitData(){
