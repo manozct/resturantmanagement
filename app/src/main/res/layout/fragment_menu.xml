@@ -11,9 +11,10 @@
 
     <TableRow>
         <TextView
-            style="@style/TextTableRow"
+            style="@style/info_text_view"
             android:text="Menu Item"/>
         <EditText
+            style="@style/info_edit_text"
             android:id="@+id/menuTxt"
             android:layout_height="match_parent"
             android:layout_width="wrap_content"/>
