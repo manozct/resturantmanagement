@@ -27,13 +27,17 @@ import rms.manozct.resturantmanagement.fragment.MainFragment;
 import rms.manozct.resturantmanagement.fragment.MenuFragment;
 import rms.manozct.resturantmanagement.fragment.OrderFragment;
 import rms.manozct.resturantmanagement.fragment.PlaceOrderFragment;
+import rms.manozct.resturantmanagement.fragment.SelectSubmenuFragment;
+import rms.manozct.resturantmanagement.fragment.SubMenuFragment;
 
 public class EmployeeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
                     EmployeeFragment.OnFragmentInteractionListener,
                     MainFragment.OnFragmentInteractionListener,
         OrderFragment.OnFragmentInteractionListener,
-        PlaceOrderFragment.OnFragmentInteractionListener
+        PlaceOrderFragment.OnFragmentInteractionListener,
+        SubMenuFragment.OnFragmentInteractionListener,
+        SelectSubmenuFragment.OnFragmentInteractionListener
 
                     {
     private DrawerLayout drawer;

@@ -1,15 +1,13 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="rms.manozct.resturantmanagement.fragment.MenuRowFragment">
+    tools:context="rms.manozct.resturantmanagement.fragment.AddEmployeeFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="5dp"
-        android:text="Select Menu"
-        android:id="@+id/lstViewRow"/>
+        android:text="@string/hello_blank_fragment" />
 
-</LinearLayout>
+</FrameLayout>
