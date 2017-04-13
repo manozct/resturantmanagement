@@ -7,6 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import rms.manozct.resturantmanagement.R;
 
@@ -19,6 +23,7 @@ import rms.manozct.resturantmanagement.R;
  * create an instance of this fragment.
  */
 public class PlaceOrderFragment extends Fragment {
+    private ListView listView;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -64,8 +69,48 @@ public class PlaceOrderFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view=inflater.inflate(R.layout.fragment_place_order, container, false);
+        listView=(ListView) view.findViewById(R.id.menuList);
+        String[] values = new String[] { "Android List View",
+                "Adapter implementation",
+                "Simple List View In Android",
+                "Create List View Android",
+                "Android Example",
+                "List View Source Code",
+                "List View Array Adapter",
+                "Android Example List View"
+        };
+
+
+        //ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,R.layout.fragment_menu_row,R.id.lstViewRow,values);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_place_order, container, false);
+
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this.getActivity(),R.layout.fragment_menu_row,R.id.lstViewRow,values);
+
+       listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                // ListView Clicked item index
+                int itemPosition     = position;
+
+                // ListView Clicked item value
+                String  itemValue    = (String) listView.getItemAtPosition(position);
+
+                // Show Alert
+                Toast.makeText(getActivity().getApplicationContext(),
+                        "Position :"+itemPosition+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
+                        .show();
+
+            }
+
+        });
+
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

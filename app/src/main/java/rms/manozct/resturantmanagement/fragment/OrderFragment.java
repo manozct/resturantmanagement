@@ -7,8 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import rms.manozct.resturantmanagement.R;
+import rms.manozct.resturantmanagement.activity.EmployeeActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,7 +20,7 @@ import rms.manozct.resturantmanagement.R;
  * create an instance of this fragment.
  */
 public class OrderFragment extends Fragment {
-
+private Button placeOrderBtn;
     private OnFragmentInteractionListener mListener;
 
     public OrderFragment() {
@@ -33,8 +35,18 @@ public class OrderFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view=inflater.inflate(R.layout.fragment_order, container, false);
+
+        placeOrderBtn=(Button) view.findViewById(R.id.btnPlaceOrder);
+        placeOrderBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                EmployeeActivity.replaceFragment(new PlaceOrderFragment());
+            }
+        });
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_order, container, false);
+        return view;
     }
 
     @Override

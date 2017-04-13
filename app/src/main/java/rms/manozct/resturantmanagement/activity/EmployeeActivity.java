@@ -23,12 +23,22 @@ import android.widget.Toast;
 
 import rms.manozct.resturantmanagement.R;
 import rms.manozct.resturantmanagement.fragment.EmployeeFragment;
+import rms.manozct.resturantmanagement.fragment.MainFragment;
 import rms.manozct.resturantmanagement.fragment.MenuFragment;
+import rms.manozct.resturantmanagement.fragment.OrderFragment;
+import rms.manozct.resturantmanagement.fragment.PlaceOrderFragment;
 
-public class EmployeeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, EmployeeFragment.OnFragmentInteractionListener {
+public class EmployeeActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener,
+                    EmployeeFragment.OnFragmentInteractionListener,
+                    MainFragment.OnFragmentInteractionListener,
+        OrderFragment.OnFragmentInteractionListener,
+        PlaceOrderFragment.OnFragmentInteractionListener
+
+                    {
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
-    private FragmentManager fragmentManager;
+    private static FragmentManager fragmentManager;
     private boolean doubleBackToExitPressedOnce = false;
 
     private Toolbar toolbar;
@@ -118,10 +128,14 @@ public class EmployeeActivity extends AppCompatActivity implements NavigationVie
             case R.id.nav_cart:
                 replaceFragment(new EmployeeFragment());
                 break;
+            case R.id.nav_dashboard:
+                replaceFragment(new MainFragment());
+                break;
+
         }
     }
 
-    public void replaceFragment(Fragment newFragment){
+    public static void replaceFragment(Fragment newFragment){
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_frame, newFragment);
         String backStateName = newFragment.getClass().getName();
