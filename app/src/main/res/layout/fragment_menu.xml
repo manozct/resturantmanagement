@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,11 +6,11 @@
     tools:context="rms.manozct.resturantmanagement.fragment.MenuFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TableLayout
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    <TableRow>
         <TextView
             style="@style/info_text_view"
             android:text="Menu Item"
@@ -20,14 +20,12 @@
             style="@style/info_edit_text"
             android:id="@+id/menuTxt"
             android:layout_height="match_parent"
-            android:layout_width="match_parent"/>
-    </TableRow>
-        <TableRow>
-            <Button android:id="@+id/submitBtn"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Submit"/>
-        </TableRow>
-    </TableLayout>
 
-</LinearLayout>
+            android:layout_width="wrap_content"/>
+
+    <Button android:id="@+id/submitBtn"
+        style="@style/ButtonNormalSubmit"
+       android:layout_marginBottom="10dp"
+        android:text="Submit"/>
+    </LinearLayout>
+</ScrollView>

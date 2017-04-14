@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rms.manozct.resturantmanagement.model.Employee;
+import rms.manozct.resturantmanagement.model.Role;
 import rms.manozct.resturantmanagement.util.Util;
 
 public class DbHelper {
@@ -51,11 +52,14 @@ public class DbHelper {
 			Employee emp= new Employee();
 			emp.setEmpId(myCursor.getInt(myCursor.getColumnIndex(RmsDb.EMP_ID)));
 			emp.setEmpName(myCursor.getString(myCursor.getColumnIndex(RmsDb.EMP_NAME)));
+			emp.setEmpUserName(myCursor.getString(myCursor.getColumnIndex(RmsDb.EMP_USERNAME)));
 			emp.setAddress(myCursor.getString(myCursor.getColumnIndex(RmsDb.ADDRESS)));
 			emp.setDob(Util.convertStringToDate(myCursor.getString(myCursor.getColumnIndex(RmsDb.DOB))));
 			emp.setcNo(myCursor.getString(myCursor.getColumnIndex(RmsDb.CONTACT_NO)));
 			emp.setSsn(myCursor.getString(myCursor.getColumnIndex(RmsDb.SSN)));
+			emp.setRole(Role.valueOf(myCursor.getString(myCursor.getColumnIndex(RmsDb.POSITION)) ));
 			emp.setHireDay(Util.convertStringToDate(myCursor.getString(myCursor.getColumnIndex(RmsDb.HIRE_DAY))));
+
 			employees.add(emp);
 			myCursor.moveToNext();
 		}
@@ -81,9 +85,14 @@ public class DbHelper {
 
 	public long insertEmployee(Employee employee) throws Exception {
 		ContentValues cv = new ContentValues();
-		cv.put(RmsDb.EMP_ID, employee.getEmpId());
+		//cv.put(RmsDb.EMP_ID, employee.getEmpId());
 		cv.put(RmsDb.EMP_NAME, employee.getName());
+		cv.put(RmsDb.EMP_USERNAME, employee.getEmpUserName());
+		cv.put(RmsDb.EMP_PASSWORD, employee.getEmpPassword());
 		cv.put(RmsDb.ADDRESS, employee.getAddress());
+		cv.put(RmsDb.POSITION, String.valueOf(employee.getRole()));
+
+
 		cv.put(RmsDb.DOB, "");
 		//cv.put(RmsDb.DOB, employee.getDob().toString());
 		cv.put(RmsDb.CONTACT_NO, employee.getcNo());

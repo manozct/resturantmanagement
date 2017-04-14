@@ -7,6 +7,8 @@ import rms.manozct.resturantmanagement.database.DbHelper;
 public class Employee {
     private Integer empId;
     private String empName;
+    private String empUserName;
+    private String empPassword;
     private String address;
     private Date dob;
     private String cNo;
@@ -35,11 +37,26 @@ public class Employee {
         this.role = role;
     }
 
+    public Employee(Integer empId, String empName, String empUserName, String empPassword, String address, Date dob, String cNo, String ssn, Double salary, Date hireDay, Role role) {
+        this.empId = empId;
+        this.empName = empName;
+        this.empUserName = empUserName;
+        this.empPassword = empPassword;
+        this.address = address;
+        this.dob = dob;
+        this.cNo = cNo;
+        this.ssn = ssn;
+        this.salary = salary;
+        this.hireDay = hireDay;
+        this.role = role;
+    }
+
     public Employee(Integer empId, String empName, String address, Date dob, String cNo, String ssn, Double salary, Date hireDay, Role role) {
         this.empId = empId;
         this.empName = empName;
         this.address = address;
         this.dob = dob;
+
         this.cNo = cNo;
         this.ssn = ssn;
         this.salary = salary;
@@ -127,6 +144,22 @@ public class Employee {
 
     public String getName() {
         return empName;
+    }
+
+    public String getEmpUserName() {
+        return empUserName;
+    }
+
+    public void setEmpUserName(String empUserName) {
+        this.empUserName = empUserName;
+    }
+
+    public String getEmpPassword() {
+        return empPassword;
+    }
+
+    public void setEmpPassword(String empPassword) {
+        this.empPassword = empPassword;
     }
 
     public void setName(String name) {

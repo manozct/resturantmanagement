@@ -24,6 +24,7 @@ import rms.manozct.resturantmanagement.fragment.EmployeeFragment;
 import rms.manozct.resturantmanagement.fragment.EmployeeFunctionsFragment;
 import rms.manozct.resturantmanagement.fragment.LoginFragment;
 import rms.manozct.resturantmanagement.fragment.MainFragment;
+//import rms.manozct.resturantmanagement.fragment.EmployeeListFragment;
 import rms.manozct.resturantmanagement.fragment.MenuFragment;
 import rms.manozct.resturantmanagement.fragment.OrderFragment;
 import rms.manozct.resturantmanagement.fragment.PlaceOrderFragment;
@@ -32,7 +33,7 @@ import rms.manozct.resturantmanagement.fragment.SubMenuFragment;
 import rms.manozct.resturantmanagement.fragment.TableFragment;
 import rms.manozct.resturantmanagement.model.Employee;
 import rms.manozct.resturantmanagement.model.Role;
-
+//
 public class EmployeeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
                     EmployeeFragment.OnFragmentInteractionListener,
@@ -45,6 +46,7 @@ public class EmployeeActivity extends AppCompatActivity
         LoginFragment.OnFragmentInteractionListener
 
                     {
+
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     private static FragmentManager fragmentManager;
@@ -170,6 +172,11 @@ public class EmployeeActivity extends AppCompatActivity
             case R.id.nav_report:
                 replaceFragment(new MenuFragment());
                 break;
+
+            case R.id.nav_category:
+                replaceFragment(new EmployeeListFragment());
+                break;
+
 
         }
     }
