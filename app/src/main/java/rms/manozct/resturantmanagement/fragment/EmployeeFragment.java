@@ -18,6 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rms.manozct.resturantmanagement.R;
+import rms.manozct.resturantmanagement.database.DbHelper;
+import rms.manozct.resturantmanagement.database.RmsDb;
+import rms.manozct.resturantmanagement.model.Employee;
+import rms.manozct.resturantmanagement.util.Util;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,6 +41,7 @@ public class EmployeeFragment extends Fragment {
     private EditText dobDate;
     private EditText hireDate;
     private Spinner spinnerPosition;
+    private EditText salary;
 
 
     private Button submitBtn;
@@ -59,9 +64,9 @@ public class EmployeeFragment extends Fragment {
         addressText = (EditText) view.findViewById(R.id.addressTxt);
         contactNoText = (EditText) view.findViewById(R.id.contactTxt);
         ssnText = (EditText) view.findViewById(R.id.snnTxt);
-
+        salary=(EditText)view.findViewById(R.id.salary);
         dobDate = (EditText) view.findViewById(R.id.dob);
-
+    spinnerPosition=(Spinner)view.findViewById(R.id.positionSpinner);
         submitBtn = (Button) view.findViewById(R.id.submitBtn);
         spinnerPosition=(Spinner)view.findViewById(R.id.positionSpinner);
 
@@ -82,12 +87,36 @@ public class EmployeeFragment extends Fragment {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = nameText.getText().toString();
-                Toast.makeText(EmployeeFragment.this.getActivity(), "Hello "+name, Toast.LENGTH_SHORT).show();
+            submitData();
             }
         });
 
         return view;
+    }
+
+    public void submitData(){
+        Employee employee = new Employee();
+        //Getting input from user and setting to employee model
+        employee.setEmpName(nameText.getText().toString());
+        employee.setAddress(addressText.getText().toString());
+        employee.setcNo(contactNoText.getText().toString());
+        employee.setSalary(Double.parseDouble(salary.getText().toString()));
+        employee.setHireDay(Util.convertStringToDate(hireDate.getText().toString()));
+        employee.setSsn(ssnText.getText().toString());
+        employee.setDob(Util.convertStringToDate(dobDate.getText().toString()));
+//        employee.setRole(spinnerPosition.getSelectedItem());
+        //TODO other setter
+        DbHelper dbHelper = new DbHelper(getActivity());
+        dbHelper.write();
+        try {
+            dbHelper.insertEmployee(employee);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }finally {
+            dbHelper.close();
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event

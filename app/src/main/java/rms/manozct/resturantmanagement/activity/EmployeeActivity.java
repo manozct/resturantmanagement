@@ -16,19 +16,22 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import rms.manozct.resturantmanagement.R;
+import rms.manozct.resturantmanagement.fragment.CashierFragment;
 import rms.manozct.resturantmanagement.fragment.EmployeeFragment;
+import rms.manozct.resturantmanagement.fragment.EmployeeFunctionsFragment;
+import rms.manozct.resturantmanagement.fragment.LoginFragment;
 import rms.manozct.resturantmanagement.fragment.MainFragment;
 import rms.manozct.resturantmanagement.fragment.MenuFragment;
 import rms.manozct.resturantmanagement.fragment.OrderFragment;
 import rms.manozct.resturantmanagement.fragment.PlaceOrderFragment;
 import rms.manozct.resturantmanagement.fragment.SelectSubmenuFragment;
 import rms.manozct.resturantmanagement.fragment.SubMenuFragment;
+import rms.manozct.resturantmanagement.fragment.TableFragment;
+import rms.manozct.resturantmanagement.model.Employee;
+import rms.manozct.resturantmanagement.model.Role;
 
 public class EmployeeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -37,7 +40,9 @@ public class EmployeeActivity extends AppCompatActivity
         OrderFragment.OnFragmentInteractionListener,
         PlaceOrderFragment.OnFragmentInteractionListener,
         SubMenuFragment.OnFragmentInteractionListener,
-        SelectSubmenuFragment.OnFragmentInteractionListener
+        SelectSubmenuFragment.OnFragmentInteractionListener,
+        EmployeeFunctionsFragment.OnFragmentInteractionListener,
+        LoginFragment.OnFragmentInteractionListener
 
                     {
     private DrawerLayout drawer;
@@ -46,6 +51,8 @@ public class EmployeeActivity extends AppCompatActivity
     private boolean doubleBackToExitPressedOnce = false;
 
     private Toolbar toolbar;
+
+    public static Employee loginEmployee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,17 +133,41 @@ public class EmployeeActivity extends AppCompatActivity
 
     public void changeLayout(int id){
         switch (id) {
+          //my Account
             case R.id.nav_account:
-                replaceFragment(new EmployeeFragment());
+                //if (Role.MANAGER==loginEmployee.getRole()){
+                    replaceFragment(new EmployeeFragment());
+                /*}else {
+                    Toast.makeText(this, "You are not authorized to Add user", Toast.LENGTH_SHORT).show();
+                }*/
                 break;
-            case R.id.nav_cart:
-                replaceFragment(new EmployeeFragment());
+            //login
+            case R.id.nav_login:
+                replaceFragment(new LoginFragment());
                 break;
+            //for home menu
             case R.id.nav_dashboard:
                 replaceFragment(new MainFragment());
                 break;
+            //for user menu
+            case R.id.nav_category:
+                replaceFragment(new MainFragment());
+                break;
 
+            //inventory menu
+            case R.id.nav_product:
+                replaceFragment(new CashierFragment());
+                break;
+            //menu
             case R.id.nav_wishlist:
+                replaceFragment(new MenuFragment());
+                break;
+            //table
+            case R.id.nav_table:
+                replaceFragment(new TableFragment());
+                break;
+            //
+            case R.id.nav_report:
                 replaceFragment(new MenuFragment());
                 break;
 

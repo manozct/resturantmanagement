@@ -39,8 +39,6 @@ public class DbHelper {
 	}
 
 	public List<Employee> getEmployee(Integer id) {
-		// THIS METHOD IS CALLED BY YOUR MAIN ACTIVITY TO READ A VALUE FROM THE
-		// DATABASE
 		StringBuilder query = new StringBuilder();
 		query.append("SELECT * FROM " + RmsDb.EMP_TABLE);
 		if (id!=null){
@@ -51,6 +49,7 @@ public class DbHelper {
 		List<Employee> employees = new ArrayList<>();
 		while(myCursor.isAfterLast() == false){
 			Employee emp= new Employee();
+			emp.setEmpId(myCursor.getInt(myCursor.getColumnIndex(RmsDb.EMP_ID)));
 			emp.setEmpName(myCursor.getString(myCursor.getColumnIndex(RmsDb.EMP_NAME)));
 			emp.setAddress(myCursor.getString(myCursor.getColumnIndex(RmsDb.ADDRESS)));
 			emp.setDob(Util.convertStringToDate(myCursor.getString(myCursor.getColumnIndex(RmsDb.DOB))));
@@ -69,10 +68,10 @@ public class DbHelper {
 		ContentValues cv = new ContentValues();
 		cv.put(RmsDb.EMP_NAME, employee.getName());
 		cv.put(RmsDb.ADDRESS, employee.getAddress());
-		cv.put(RmsDb.DOB, employee.getDob().toString());
+		//cv.put(RmsDb.DOB, employee.getDob().toString());
 		cv.put(RmsDb.CONTACT_NO, employee.getcNo());
 		cv.put(RmsDb.SSN, employee.getSsn());
-		cv.put(RmsDb.HIRE_DAY, employee.getHireDay().toString());
+		//cv.put(RmsDb.HIRE_DAY, employee.getHireDay().toString());
 		int numRowsAffected = database.update(RmsDb.EMP_TABLE, cv,
 				RmsDb.EMP_ID + "=?",
 				new String[] { String.valueOf(id)});
@@ -85,10 +84,12 @@ public class DbHelper {
 		cv.put(RmsDb.EMP_ID, employee.getEmpId());
 		cv.put(RmsDb.EMP_NAME, employee.getName());
 		cv.put(RmsDb.ADDRESS, employee.getAddress());
-		cv.put(RmsDb.DOB, employee.getDob().toString());
+		cv.put(RmsDb.DOB, "");
+		//cv.put(RmsDb.DOB, employee.getDob().toString());
 		cv.put(RmsDb.CONTACT_NO, employee.getcNo());
 		cv.put(RmsDb.SSN, employee.getSsn());
-		cv.put(RmsDb.HIRE_DAY, employee.getHireDay().toString());
+		cv.put(RmsDb.HIRE_DAY, "");
+		//cv.put(RmsDb.HIRE_DAY, employee.getHireDay().toString());
 		return database.insert(RmsDb.EMP_TABLE, null, cv);
 	}
 

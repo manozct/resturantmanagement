@@ -5,24 +5,10 @@
     tools:context="rms.manozct.resturantmanagement.fragment.TableFragment">
 
     <TableLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:text="Table Name: " />
-
-            <EditText
-                android:id="@+id/snnTxt"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:inputType="text" />
-        </TableRow>
     </TableLayout>
 
 

@@ -7,27 +7,25 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-//
+import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
+import android.widget.TextView;
+
 import rms.manozct.resturantmanagement.R;
-import rms.manozct.resturantmanagement.activity.EmployeeActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link SelectSubmenuFragment.OnFragmentInteractionListener} interface
+ * {@link LoginFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link SelectSubmenuFragment#newInstance} factory method to
+ * Use the {@link LoginFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-import android.support.v7.widget.Toolbar;
-import android.widget.ListView;
-import android.widget.Toast;
+public class LoginFragment extends Fragment {
 
-public class SelectSubmenuFragment extends Fragment {
-   private ListView listView;
+    private AutoCompleteTextView username;
+    private EditText pswd;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -39,7 +37,7 @@ public class SelectSubmenuFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public SelectSubmenuFragment() {
+    public LoginFragment() {
         // Required empty public constructor
     }
 
@@ -49,11 +47,11 @@ public class SelectSubmenuFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment SelectSubmenuFragment.
+     * @return A new instance of fragment LoginFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SelectSubmenuFragment newInstance(String param1, String param2) {
-        SelectSubmenuFragment fragment = new SelectSubmenuFragment();
+    public static LoginFragment newInstance(String param1, String param2) {
+        LoginFragment fragment = new LoginFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -71,51 +69,21 @@ public class SelectSubmenuFragment extends Fragment {
     }
 
     @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View view=inflater.inflate(R.layout.fragment_place_order, container, false);
-            listView=(ListView) view.findViewById(R.id.menuList);
-            String[] values = new String[] { "Appetizer",
-                    "BreakFast",
-                    "Lunch",
-                    "Dinner",
-                    "Desert",
-                    "Hot Drinks",
-                    "Soft Drinks"
-            };
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view=inflater.inflate(R.layout.fragment_login, container, false);
+        username=(AutoCompleteTextView)view.findViewById(R.id.username);
+        pswd=(EditText)view.findViewById(R.id.password);
+        boolean check=checkLogin(username.getText().toString(),pswd.getText().toString());
+        
+        return view;
+    }
+    public boolean checkLogin(String name,String pswd){
+//        Employee emp=new Employee();
 
-
-            //ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,R.layout.fragment_menu_row,R.id.lstViewRow,values);
-            // Inflate the layout for this fragment
-
-            ArrayAdapter<String> adapter=new ArrayAdapter<String>(this.getActivity(),R.layout.fragment_menu_row,R.id.lstViewRow,values);
-
-            listView.setAdapter(adapter);
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view,
-                                        int position, long id) {
-
-                    // ListView Clicked item index
-                    int itemPosition     = position;
-
-                    // ListView Clicked item value
-                    String  itemValue    = (String) listView.getItemAtPosition(position);
-                    EmployeeActivity.replaceFragment(new SubMenuFragment());
-                    // Show Alert
-//                Toast.makeText(getActivity().getApplicationContext(),
-//                        "Position :"+itemPosition+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
-//                        .show();
-
-                }
-
-            });
-
-
-
-            return view;
-        }
+        return true;
+    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

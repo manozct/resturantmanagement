@@ -1,36 +1,25 @@
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="rms.manozct.resturantmanagement.fragment.SubMenuFragment">
 
-    <TableLayout
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
-
-        <TableRow>
-            <TextView
-                style="@style/TextTableRow"
-                android:text="Select Menu"/>
-            <Spinner
-                android:id="@+id/spinnerMenu"
-                android:layout_height="match_parent"
-                android:layout_width="wrap_content"/>
-        </TableRow>
-        <TableRow>
-            <TextView
-                style="@style/TextTableRow"
-                android:text="Sub Menu"/>
-            <EditText
-                android:id="@+id/subMenuTxt"
-                android:layout_height="match_parent"
-                android:layout_width="wrap_content"/>
-        </TableRow>
-    </TableLayout>
-    <Button android:id="@+id/submitBtn"
+    <ImageButton
+        android:id="@+id/menuBtn"
+        style="@style/Widget.AppCompat.ImageButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Submit"/>
+        android:layout_height="match_parent"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+
+    <Button android:id="@+id/selectMenuBtn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Select"/>
 
 
 </LinearLayout>
