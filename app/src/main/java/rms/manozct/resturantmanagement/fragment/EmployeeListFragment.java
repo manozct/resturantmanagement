@@ -137,6 +137,7 @@ public class EmployeeListFragment extends Fragment {
            System.out.println("Position:"+employees.get(i).getRole());
             t4v.setText(employees.get(i).getRole().toString());
             t4v.setTextColor(Color.WHITE);
+            
             t4v.setGravity(Gravity.CENTER);
             tbrow.addView(t4v);
             stk.addView(tbrow);
