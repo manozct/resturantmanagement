@@ -65,6 +65,30 @@ public class DbHelper {
 		}
 		return employees;
 	}
+	public Employee getEmployeeFromName(String name,String pswd) {
+		StringBuilder query = new StringBuilder();
+		query.append("SELECT * FROM " + RmsDb.EMP_TABLE);
+
+			query.append(" WHERE " + RmsDb.EMP_NAME + "='" +name );
+		query.append("' and "+RmsDb.EMP_PASSWORD+"='" +pswd+"'");
+
+		Cursor myCursor = database.rawQuery(query.toString(), null);
+
+		if (myCursor.moveToFirst()){
+			Employee emp= new Employee();
+			emp.setEmpId(myCursor.getInt(myCursor.getColumnIndex(RmsDb.EMP_ID)));
+			emp.setEmpName(myCursor.getString(myCursor.getColumnIndex(RmsDb.EMP_NAME)));
+			emp.setEmpUserName(myCursor.getString(myCursor.getColumnIndex(RmsDb.EMP_USERNAME)));
+			emp.setAddress(myCursor.getString(myCursor.getColumnIndex(RmsDb.ADDRESS)));
+			emp.setDob(Util.convertStringToDate(myCursor.getString(myCursor.getColumnIndex(RmsDb.DOB))));
+			emp.setcNo(myCursor.getString(myCursor.getColumnIndex(RmsDb.CONTACT_NO)));
+			emp.setSsn(myCursor.getString(myCursor.getColumnIndex(RmsDb.SSN)));
+			emp.setRole(Role.valueOf(myCursor.getString(myCursor.getColumnIndex(RmsDb.POSITION)) ));
+			emp.setHireDay(Util.convertStringToDate(myCursor.getString(myCursor.getColumnIndex(RmsDb.HIRE_DAY))));
+			return emp;
+		}
+		return  null;
+	}
 	
 	public int updateEmployee(int id, Employee employee) throws Exception {
 		// THIS METHOD IS CALLED BY YOUR MAIN ACTIVITY TO WRITE A VALUE TO THE

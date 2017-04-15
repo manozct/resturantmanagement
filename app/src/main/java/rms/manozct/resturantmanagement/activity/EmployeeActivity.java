@@ -22,6 +22,7 @@ import rms.manozct.resturantmanagement.R;
 import rms.manozct.resturantmanagement.fragment.CashierFragment;
 import rms.manozct.resturantmanagement.fragment.EmployeeFragment;
 import rms.manozct.resturantmanagement.fragment.EmployeeFunctionsFragment;
+import rms.manozct.resturantmanagement.fragment.EmployeeListFragment;
 import rms.manozct.resturantmanagement.fragment.LoginFragment;
 import rms.manozct.resturantmanagement.fragment.MainFragment;
 //import rms.manozct.resturantmanagement.fragment.EmployeeListFragment;
@@ -43,7 +44,8 @@ public class EmployeeActivity extends AppCompatActivity
         SubMenuFragment.OnFragmentInteractionListener,
         SelectSubmenuFragment.OnFragmentInteractionListener,
         EmployeeFunctionsFragment.OnFragmentInteractionListener,
-        LoginFragment.OnFragmentInteractionListener
+        LoginFragment.OnFragmentInteractionListener,
+        CashierFragment.OnFragmentInteractionListener
 
                     {
 
@@ -171,10 +173,6 @@ public class EmployeeActivity extends AppCompatActivity
             //
             case R.id.nav_report:
                 replaceFragment(new MenuFragment());
-                break;
-
-            case R.id.nav_category:
-                replaceFragment(new EmployeeListFragment());
                 break;
 
 

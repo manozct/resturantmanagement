@@ -8,10 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import rms.manozct.resturantmanagement.R;
+import rms.manozct.resturantmanagement.activity.EmployeeActivity;
+import rms.manozct.resturantmanagement.database.DbHelper;
+import rms.manozct.resturantmanagement.model.Employee;
+import rms.manozct.resturantmanagement.model.Role;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +31,7 @@ public class LoginFragment extends Fragment {
 
     private AutoCompleteTextView username;
     private EditText pswd;
+    private Button btnLogin;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -73,16 +80,42 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_login, container, false);
+        final View view2=inflater.inflate(R.layout.fragment_main, container, false);
         username=(AutoCompleteTextView)view.findViewById(R.id.username);
         pswd=(EditText)view.findViewById(R.id.password);
-        boolean check=checkLogin(username.getText().toString(),pswd.getText().toString());
-        
+        btnLogin=(Button)view.findViewById(R.id.email_sign_in_button);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean check=checkLogin(username.getText().toString(),pswd.getText().toString());
+               if (check){
+                  if( EmployeeActivity.loginEmployee.getRole()== Role.MANAGER)
+                   EmployeeActivity.replaceFragment(new EmployeeFunctionsFragment());
+                  else if( EmployeeActivity.loginEmployee.getRole()== Role.WAITER)
+                       EmployeeActivity.replaceFragment(new OrderFragment());
+                  else if( EmployeeActivity.loginEmployee.getRole()== Role.CASHIER)
+                      EmployeeActivity.replaceFragment(new CashierFragment());
+               }
+               else
+                Toast.makeText(LoginFragment.this.getActivity(), "Username or password is incorrect", Toast.LENGTH_SHORT).show();
+             }
+        });
+
+
         return view;
     }
     public boolean checkLogin(String name,String pswd){
-//        Employee emp=new Employee();
+        DbHelper dbHelper = new DbHelper(getActivity());
+        dbHelper.write();
+        if(name!="" && pswd!=""){
+            Employee emp=dbHelper.getEmployeeFromName(name,pswd);
+            if(emp!=null){
+                EmployeeActivity.loginEmployee=emp;
+                return true;
+            }
+        }
+        return false;
 
-        return true;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
