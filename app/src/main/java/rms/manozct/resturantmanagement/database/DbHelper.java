@@ -100,12 +100,16 @@ public class DbHelper
 	public int updateEmployee(int id, Employee employee) throws Exception {
 		// THIS METHOD IS CALLED BY YOUR MAIN ACTIVITY TO WRITE A VALUE TO THE
 		// DATABASE
+		System.out.println("Update method in DBHelper");
 		ContentValues cv = new ContentValues();
 		cv.put(RmsDb.EmployeeTbl.EMP_NAME, employee.getName());
 		cv.put(RmsDb.EmployeeTbl.ADDRESS, employee.getAddress());
+		cv.put(RmsDb.EmployeeTbl.EMP_USERNAME, employee.getEmpUserName());
+		cv.put(RmsDb.EmployeeTbl.EMP_PASSWORD, employee.getEmpPassword());
 		//cv.put(RmsDb.DOB, employee.getDob().toString());
 		cv.put(RmsDb.EmployeeTbl.CONTACT_NO, employee.getcNo());
 		cv.put(RmsDb.EmployeeTbl.SSN, employee.getSsn());
+		cv.put(RmsDb.EmployeeTbl.POSITION, employee.getRole().toString());
 		//cv.put(RmsDb.HIRE_DAY, employee.getHireDay().toString());
 		int numRowsAffected = database.update(RmsDb.EmployeeTbl.EMP_TABLE, cv,
 				RmsDb.EmployeeTbl.EMP_ID + "=?",

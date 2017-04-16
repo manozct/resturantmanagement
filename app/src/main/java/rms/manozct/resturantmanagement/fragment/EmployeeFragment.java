@@ -133,7 +133,7 @@ public class EmployeeFragment extends Fragment {
 
    void setUpdateData(){
        System.out.println("Enter inside Update Method");
-        nameText.setText(employee.getName());
+       nameText.setText(employee.getName());
        userName.setText(employee.getEmpUserName());
        password.setText(employee.getEmpPassword());
        addressText.setText(employee.getAddress());
