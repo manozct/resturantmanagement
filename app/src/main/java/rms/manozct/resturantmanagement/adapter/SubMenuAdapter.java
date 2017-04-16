@@ -27,10 +27,12 @@ import rms.manozct.resturantmanagement.model.SubMenu;
 public class SubMenuAdapter extends RecyclerView.Adapter<SubMenuAdapter.ViewHolder>{
     private final List<SubMenu> mValues;
     private final OnListFragmentInteractionListener mListener;
+    private EmployeeActivity employeeActivity;
 
-    public SubMenuAdapter(List<SubMenu> items, OnListFragmentInteractionListener listener) {
+    public SubMenuAdapter(List<SubMenu> items, OnListFragmentInteractionListener listener, EmployeeActivity employeeActivity) {
         mValues = items;
         mListener = listener;
+        this.employeeActivity = employeeActivity;
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -40,7 +42,7 @@ public class SubMenuAdapter extends RecyclerView.Adapter<SubMenuAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.descriptionText.setText(holder.mItem.getSubMenuName());
         holder.priceText.setText("$"+holder.mItem.getPrice());
@@ -57,7 +59,7 @@ public class SubMenuAdapter extends RecyclerView.Adapter<SubMenuAdapter.ViewHold
         holder.cartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //EmployeeActivity.addToCart(holder.mItem);
+                employeeActivity.addToCart(holder.mItem);
             }
         });
 
