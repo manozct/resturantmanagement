@@ -73,28 +73,54 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_main, container, false);
         waiterBtn=(Button) view.findViewById(R.id.btnWaiter);
+        managerBtn=(Button) view.findViewById(R.id.btnManager);
+        cashierBtn=(Button)view.findViewById(R.id.btnCashier);
+        if(EmployeeActivity.loginEmployee==null){
+
+            waiterBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EmployeeActivity.replaceFragment(new LoginFragment());
+                }
+            });
+
+            managerBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    EmployeeActivity.replaceFragment(new LoginFragment());
+                }
+            });
+            cashierBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EmployeeActivity.replaceFragment(new LoginFragment());
+
+                }
+            });
+        }
         waiterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EmployeeActivity.replaceFragment(new LoginFragment());
+                EmployeeActivity.replaceFragment(new OrderFragment());
             }
         });
-        managerBtn=(Button) view.findViewById(R.id.btnManager);
-        cashierBtn=(Button)view.findViewById(R.id.btnCashier);
+
         managerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                EmployeeActivity.replaceFragment(new LoginFragment());
+                EmployeeActivity.replaceFragment(new EmployeeFragment());
             }
         });
         cashierBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EmployeeActivity.replaceFragment(new LoginFragment());
+                EmployeeActivity.replaceFragment(new CashierFragment());
 
             }
         });
+
         return view;
 
     }
