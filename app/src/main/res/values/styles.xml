@@ -70,4 +70,41 @@
         <item name="android:layout_marginTop" >7dp</item>
     </style>
 
+
+    <style name="btn_product_cart" parent="android:Widget.Holo.Button">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/product_cart_selector</item>
+        <item name="android:paddingTop">13dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:drawableTop">@drawable/ic_shopping_cart</item>
+    </style>
+
+    <style name="btn_product_favourite" parent="android:Widget.Holo.Button">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/product_favourite_selector</item>
+        <item name="android:paddingTop">13dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:drawableTop">@drawable/ic_favorite</item>
+    </style>
+
+    <style name="btn_product_dot" parent="android:Widget.Holo.Button">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/product_dot_selector</item>
+        <item name="android:paddingTop">13dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:drawableTop">@drawable/dots</item>
+    </style>
+
     </resources>
