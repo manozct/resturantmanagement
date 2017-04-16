@@ -1,6 +1,8 @@
 package rms.manozct.resturantmanagement.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
@@ -22,6 +24,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,6 +71,8 @@ public class EmployeeActivity extends AppCompatActivity
         TableFragment.OnFragmentInteractionListener,
         MenuListFragment.OnFragmentInteractionListener
 {
+
+    public static final int SELECT_PHOTO = 100;
 
     //Cart Variables
     MenuItem itemCart;
@@ -334,5 +339,21 @@ public class EmployeeActivity extends AppCompatActivity
     @Override
     public void onListFragmentInteraction(Object item) {
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+
+        switch(requestCode) {
+            case SELECT_PHOTO:
+                if(resultCode == RESULT_OK){
+                    Uri selectedImage = imageReturnedIntent.getData();
+                    System.out.println("Selected Image URl"+selectedImage);
+                    Toast.makeText(this, "Got Image:"+selectedImage.toString(), Toast.LENGTH_LONG);
+                    /*InputStream imageStream = getContentResolver().openInputStream(selectedImage);
+                    Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);*/
+                }
+        }
     }
 }
