@@ -309,7 +309,7 @@ public class EmployeeActivity extends AppCompatActivity
         navLogout.setVisibility(View.VISIBLE);
         navLogin.setVisible(false);
         navAccnt.setVisible(true);
-        navUsername.setText(loginEmployee.getEmpName());
+        navUsername.setText(loginEmployee.getEmpUserName());
     }
 
     public void showLoginNav(){
