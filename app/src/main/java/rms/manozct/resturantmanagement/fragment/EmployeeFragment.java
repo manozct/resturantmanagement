@@ -15,7 +15,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import rms.manozct.resturantmanagement.R;
@@ -37,6 +41,10 @@ public class EmployeeFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+
+    private boolean isUpdate;
+    private  Employee employee;
+
     private EditText nameText;
     private EditText userName;
     private EditText password;
@@ -46,10 +54,12 @@ public class EmployeeFragment extends Fragment {
     private EditText dobDate;
     private EditText hireDate;
     private Spinner spinnerPosition;
+    ArrayAdapter<Role> dataAdapter;
     private EditText salary;
 
 
     private Button submitBtn;
+    private Button deleteBtn;
     public EmployeeFragment() {
         // Required empty public constructor
     }
@@ -57,6 +67,14 @@ public class EmployeeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+        if (bundle!=null){
+            employee = (Employee) bundle.getSerializable("employee");
+            System.out.println("Emp id:"+employee.getEmpId());
+            if (employee!=null){
+                isUpdate = true;
+            }
+        }
     }
 
     @Override
@@ -77,12 +95,13 @@ public class EmployeeFragment extends Fragment {
         hireDate = (EditText) view.findViewById(R.id.hireDate);
 
         submitBtn = (Button) view.findViewById(R.id.submitBtn);
+        deleteBtn = (Button) view.findViewById(R.id.deleteBtn);
         spinnerPosition=(Spinner)view.findViewById(R.id.positionSpinner);
 
         List<String>positions=new ArrayList<String>();
 
         // Creating adapter for spinner
-        ArrayAdapter<Role> dataAdapter = new ArrayAdapter<Role>(getActivity(),android.R.layout.simple_spinner_item,Role.values());
+        dataAdapter = new ArrayAdapter<Role>(getActivity(),android.R.layout.simple_spinner_item,Role.values());
 
         // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -101,8 +120,41 @@ public class EmployeeFragment extends Fragment {
 
             }
         });
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DeleteData();
 
+            }
+        });
+
+
+        if (isUpdate){
+            setUpdateData();
+        }
         return view;
+    }
+
+   void setUpdateData(){
+       System.out.println("Enter inside Update Method");
+        nameText.setText(employee.getName());
+       userName.setText(employee.getEmpUserName());
+       password.setText(employee.getEmpPassword());
+       addressText.setText(employee.getAddress());
+       DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+      // Date today = Calendar.getInstance().getTime();
+       System.out.println(" Birth:"+employee.getDob());
+       /*String dob = df.format(employee.getDob());
+       System.out.println("Date of Birth:"+dob);
+       dobDate.setText(dob);*/
+       contactNoText.setText(employee.getcNo());
+       ssnText.setText(employee.getSsn());
+      // hireDate.setText(employee.getHireDay().toString());
+       int position=(dataAdapter.getPosition(employee.getRole()));
+       spinnerPosition.setSelection(position);
+
+
+       //TODO
     }
     public void replaceFragment(Fragment newFragment){
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
@@ -114,25 +166,31 @@ public class EmployeeFragment extends Fragment {
     }
 
     public void submitData(){
-        Employee employee = new Employee();
+        Employee emp = new Employee();
         //Getting input from user and setting to employee model
-        employee.setEmpName(nameText.getText().toString());
-        employee.setEmpUserName(userName.getText().toString());
-        employee.setEmpPassword(password.getText().toString());
-        employee.setcNo(contactNoText.getText().toString());
-        employee.setAddress(addressText.getText().toString());
-        employee.setSsn(ssnText.getText().toString());
+        emp.setEmpName(nameText.getText().toString());
+        emp.setEmpUserName(userName.getText().toString());
+        emp.setEmpPassword(password.getText().toString());
+        emp.setcNo(contactNoText.getText().toString());
+        emp.setAddress(addressText.getText().toString());
+        emp.setSsn(ssnText.getText().toString());
        // employee.setDob(dobDate.getText().toString());
-        employee.setDob(Util.convertStringToDate(dobDate.getText().toString()));
+        emp.setDob(Util.convertStringToDate(dobDate.getText().toString()));
        // employee.setHireDay(hireDate.getText().toString());
-        employee.setHireDay(Util.convertStringToDate(hireDate.getText().toString()));
-        employee.setRole((Role)spinnerPosition.getSelectedItem());
+        emp.setHireDay(Util.convertStringToDate(hireDate.getText().toString()));
+        emp.setRole((Role)spinnerPosition.getSelectedItem());
 
         //TODO other setter
         DbHelper dbHelper = new DbHelper(getActivity());
         dbHelper.write();
         try {
-            dbHelper.insertEmployee(employee);
+            if (isUpdate){
+
+                dbHelper.updateEmployee(employee.getEmpId(), emp);
+                Toast.makeText(getActivity(), "Data updated successfully", Toast.LENGTH_SHORT).show();
+            }else {
+                dbHelper.insertEmployee(emp);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -140,6 +198,14 @@ public class EmployeeFragment extends Fragment {
         }finally {
             dbHelper.close();
         }
+    }
+    public void DeleteData(){
+        System.out.println("delete method");
+        Toast.makeText(getActivity(), employee.getEmpId(), Toast.LENGTH_SHORT).show();
+        DbHelper dbHelper = new DbHelper(getActivity());
+        dbHelper.deleteEmployee(employee.getEmpId());
+
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -61,6 +61,7 @@ public class EmployeeActivity extends AppCompatActivity
     MenuItem itemNavCart;
 
     private DrawerLayout drawer;
+    public static Employee loginEmployee;
     private ActionBarDrawerToggle toggle;
     private static FragmentManager fragmentManager;
     public static Employee loginEmployee;

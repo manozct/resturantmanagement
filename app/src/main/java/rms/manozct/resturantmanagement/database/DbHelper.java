@@ -93,12 +93,16 @@ public class DbHelper {
 	public int updateEmployee(int id, Employee employee) throws Exception {
 		// THIS METHOD IS CALLED BY YOUR MAIN ACTIVITY TO WRITE A VALUE TO THE
 		// DATABASE
+		System.out.println("id of emp:"+id);
 		ContentValues cv = new ContentValues();
 		cv.put(RmsDb.EMP_NAME, employee.getName());
 		cv.put(RmsDb.ADDRESS, employee.getAddress());
+		cv.put(RmsDb.EMP_USERNAME,employee.getEmpUserName());
+		cv.put(RmsDb.EMP_PASSWORD,employee.getEmpPassword());
 		//cv.put(RmsDb.DOB, employee.getDob().toString());
 		cv.put(RmsDb.CONTACT_NO, employee.getcNo());
 		cv.put(RmsDb.SSN, employee.getSsn());
+		cv.put(RmsDb.POSITION,employee.getRole().toString());
 		//cv.put(RmsDb.HIRE_DAY, employee.getHireDay().toString());
 		int numRowsAffected = database.update(RmsDb.EMP_TABLE, cv,
 				RmsDb.EMP_ID + "=?",
