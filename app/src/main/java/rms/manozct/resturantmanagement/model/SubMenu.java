@@ -14,6 +14,13 @@ public class SubMenu extends Menu {
         this.subMenuName=subMenuName;
         this.price=price;
     }
+
+    public SubMenu(String menuName, String subMenuName, Double price) {
+        super(menuName);
+        this.subMenuName = subMenuName;
+        this.price = price;
+    }
+
     public Integer getSubMenuId() {
         return subMenuId;
     }

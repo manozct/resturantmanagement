@@ -1,6 +1,7 @@
 package rms.manozct.resturantmanagement.activity;
 
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
@@ -18,8 +19,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import rms.manozct.resturantmanagement.R;
@@ -36,6 +40,7 @@ import rms.manozct.resturantmanagement.fragment.OrderFragment;
 import rms.manozct.resturantmanagement.fragment.PlaceOrderFragment;
 import rms.manozct.resturantmanagement.fragment.SelectSubmenuFragment;
 import rms.manozct.resturantmanagement.fragment.SubMenuFragment;
+import rms.manozct.resturantmanagement.fragment.SubMenuListFragment;
 import rms.manozct.resturantmanagement.fragment.TableFragment;
 import rms.manozct.resturantmanagement.model.Employee;
 import rms.manozct.resturantmanagement.model.Role;
@@ -53,12 +58,12 @@ public class EmployeeActivity extends AppCompatActivity
         EmployeeFunctionsFragment.OnFragmentInteractionListener,
         LoginFragment.OnFragmentInteractionListener,
         CashierFragment.OnFragmentInteractionListener,
-        MenuFragment.OnFragmentInteractionListener
+        MenuFragment.OnFragmentInteractionListener,
+        SubMenuListFragment.OnFragmentInteractionListener
 {
 
     //Cart Variables
     MenuItem itemCart;
-    MenuItem itemNavCart;
 
     private DrawerLayout drawer;
     public static Employee loginEmployee;
@@ -67,8 +72,12 @@ public class EmployeeActivity extends AppCompatActivity
     public static Employee loginEmployee;
     private boolean doubleBackToExitPressedOnce = false;
 
-    private Toolbar toolbar;
+    private static Toolbar toolbar;
 
+    MenuItem navLogin;
+    MenuItem navAccnt;
+
+    TextView navLogout;
 
     public List<SubMenu> cartList;
 
@@ -92,6 +101,29 @@ public class EmployeeActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         navigationView.setCheckedItem(R.id.nav_dashboard);
+
+        cartList = new ArrayList<>();
+
+        Menu menuNav = navigationView.getMenu();
+
+        navAccnt = menuNav.findItem(R.id.nav_account);
+        navLogin = menuNav.findItem(R.id.nav_login);
+
+        View hView =  navigationView.getHeaderView(0);
+        navLogout = (TextView) hView.findViewById(R.id.nav_logout);
+        navLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showLoginNav();
+                loginEmployee = null;
+            }
+        });
+
+        if (loginEmployee!=null){
+            hideLoginNav();
+        }else {
+            showLoginNav();
+        }
     }
 
     @Override
@@ -125,6 +157,8 @@ public class EmployeeActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        itemCart = menu.findItem(R.id.action_cart);
+        setBadgeCount(null);
         return true;
     }
 
@@ -134,11 +168,6 @@ public class EmployeeActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_search) {
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -169,7 +198,7 @@ public class EmployeeActivity extends AppCompatActivity
                 break;
             //for user menu
             case R.id.nav_category:
-                replaceFragment(new MainFragment());
+                replaceFragment(new SubMenuListFragment());
                 break;
 
             //inventory menu
@@ -219,10 +248,14 @@ public class EmployeeActivity extends AppCompatActivity
             cartList.add(subMenu);
             System.out.println("Add Cart list size:" + cartList.size());
             setBadgeCount(Integer.toString(cartList.size()));
-            setNavBadgeCount(Integer.toString(cartList.size()));
         }
     }
 
+    public void removeFromCart(SubMenu subMenu){
+        cartList.remove(subMenu);
+        System.out.println("Remove Cart list size:"+cartList.size());
+        setBadgeCount(Integer.toString(cartList.size()));
+    }
 
     public void setBadgeCount(String count) {
         BadgeDrawable badge;
@@ -242,22 +275,12 @@ public class EmployeeActivity extends AppCompatActivity
         icon.setDrawableByLayerId(R.id.ic_badge, badge);
     }
 
-    public void setNavBadgeCount(String count) {
-        BadgeDrawable badge;
-        LayerDrawable icon = (LayerDrawable) itemNavCart.getIcon();
-        // Reuse drawable if possible
-        Drawable reuse = icon.findDrawableByLayerId(R.id.ic_nav_badge);
-        if (reuse != null && reuse instanceof BadgeDrawable) {
-            badge = (BadgeDrawable) reuse;
-        } else {
-            badge = new BadgeDrawable(this);
+    public void showCartFragment(){
+        if (cartList.size()<1){
+            Toast.makeText(this, "No item added in cart!!!", Toast.LENGTH_SHORT).show();
+        }else {
+            //replaceFragment(new CartFragment());
         }
-
-        if (count!=null){
-            badge.setCount(count);
-        }
-        icon.mutate();
-        icon.setDrawableByLayerId(R.id.ic_nav_badge, badge);
     }
 
     private void exitApp() {
@@ -271,5 +294,22 @@ public class EmployeeActivity extends AppCompatActivity
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    public static void setTitle(String title){
+        toolbar.setTitle(title);
+        System.out.println("TItle movie:"+toolbar.getTitle());
+    }
+
+    public void hideLoginNav(){
+        navLogin.setVisible(false);
+        navAccnt.setVisible(true);
+        navLogout.setVisibility(View.VISIBLE);
+    }
+
+    public void showLoginNav(){
+        navLogin.setVisible(true);
+        navAccnt.setVisible(false);
+        navLogout.setVisibility(View.GONE);
     }
 }
