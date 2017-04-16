@@ -1,6 +1,7 @@
 package rms.manozct.resturantmanagement.fragment;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -37,6 +39,7 @@ public class EmployeeListFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     View view;
+    private Button addButton;
 
     public EmployeeListFragment() {
         // Required empty public constructor
@@ -55,6 +58,14 @@ public class EmployeeListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view=inflater.inflate(R.layout.fragment_employee_list, container, false);
+        addButton = (Button) view.findViewById(R.id.addBtn);
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               EmployeeActivity.replaceFragment(new EmployeeFragment());
+            }
+        });
         init();
         return view;
     }
@@ -116,7 +127,7 @@ public class EmployeeListFragment extends Fragment {
             if(i%2==0){
                 tbrow.setBackgroundColor(Color.DKGRAY);
             }else{
-                tbrow.setBackgroundColor(Color.BLUE);
+                tbrow.setBackgroundColor(getResources().getColor(R.color.itti_blue));
             }
             TextView t1v = new TextView(getActivity());
             t1v.setText(Integer.toString(i+1));
@@ -144,9 +155,9 @@ public class EmployeeListFragment extends Fragment {
             tbrow.addView(t4v);
             stk.addView(tbrow);
 
-            t1v.setTextSize( 20f);
-            t2v.setTextSize( 20f);
-            t3v.setTextSize( 20f);
+            t1v.setTextSize( 15f);
+            t2v.setTextSize( 15f);
+            t3v.setTextSize( 15f);
             t4v.setTextSize( 15f);
             final Employee emp = employees.get(i);
             tbrow.setOnClickListener(new View.OnClickListener() {

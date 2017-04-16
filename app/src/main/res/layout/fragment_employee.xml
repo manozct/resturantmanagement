@@ -98,25 +98,23 @@
         android:id="@+id/positionSpinner"
         android:layout_height="match_parent" />
 <TextView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/info_text_view"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:text="Salary"/>
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        style="@style/info_edit_text"
         android:id="@+id/salary"/>
-    <TextView
-        style="@style/info_text_view"
-        android:text="Contact" />
+
     <Button
         style="@style/ButtonNormalSubmit"
         android:id="@+id/submitBtn"
         android:text="Submit"
         android:layout_marginBottom="10dp"/>
     <Button
-        style="@style/ButtonNormalSubmit"
+        style="@style/ButtonNormalDelete"
         android:id="@+id/deleteBtn"
-        android:text="Submit"
+        android:text="Delete"
         android:layout_marginBottom="10dp"/>
 </LinearLayout>
 

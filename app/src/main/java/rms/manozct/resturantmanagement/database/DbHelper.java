@@ -131,6 +131,7 @@ public class DbHelper {
 	}
 
 	public void deleteEmployee(Integer empId){
+		System.out.println("delete query");
 		StringBuilder query = new StringBuilder();
 		query.append("DELETE FROM "+RmsDb.EMP_TABLE);
 		if (empId!=null){
