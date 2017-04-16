@@ -1,10 +1,11 @@
 package rms.manozct.resturantmanagement.model;
+import java.io.Serializable;
 import java.util.Date;
 
 import rms.manozct.resturantmanagement.database.DbHelper;
 
 
-public class Employee {
+public class Employee implements Serializable{
     private Integer empId;
     private String empName;
     private String empUserName;

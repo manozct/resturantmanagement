@@ -29,7 +29,7 @@ import rms.manozct.resturantmanagement.model.Role;
 public class EmployeeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, EmployeeFragment.OnFragmentInteractionListener,MenuFragment.OnFragmentInteractionListener,EmployeeListFragment.OnFragmentInteractionListener {
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
-    private FragmentManager fragmentManager;
+    private static FragmentManager fragmentManager;
     private boolean doubleBackToExitPressedOnce = false;
 
     private Toolbar toolbar;
@@ -137,7 +137,7 @@ public class EmployeeActivity extends AppCompatActivity implements NavigationVie
         }
     }
 
-    public void replaceFragment(Fragment newFragment){
+    public static void replaceFragment(Fragment newFragment){
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_frame, newFragment);
         String backStateName = newFragment.getClass().getName();

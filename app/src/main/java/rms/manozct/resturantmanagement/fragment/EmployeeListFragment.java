@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import rms.manozct.resturantmanagement.R;
+import rms.manozct.resturantmanagement.activity.EmployeeActivity;
 import rms.manozct.resturantmanagement.database.DbHelper;
 import rms.manozct.resturantmanagement.model.Employee;
 import rms.manozct.resturantmanagement.model.Role;
@@ -108,7 +110,7 @@ public class EmployeeListFragment extends Fragment {
         List<Employee> employees = dbHelper.getEmployee(null);
         System.out.println(employees);
         for (int i = 0; i < employees.size(); i++) {
-
+            System.out.println("employee id:"+employees.get(i).getEmpId());
             TableRow tbrow = new TableRow(getActivity());
 
             if(i%2==0){
@@ -137,7 +139,7 @@ public class EmployeeListFragment extends Fragment {
            System.out.println("Position:"+employees.get(i).getRole());
             t4v.setText(employees.get(i).getRole().toString());
             t4v.setTextColor(Color.WHITE);
-            
+
             t4v.setGravity(Gravity.CENTER);
             tbrow.addView(t4v);
             stk.addView(tbrow);
@@ -150,12 +152,20 @@ public class EmployeeListFragment extends Fragment {
             tbrow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getActivity(), "Clicked on:"+emp.getName(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Clicked on:"+emp.getEmpId(), Toast.LENGTH_SHORT).show();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("employee", emp);
+                    EmployeeFragment employeeFragment = new EmployeeFragment();
+                    employeeFragment.setArguments(bundle);
+                    EmployeeActivity.replaceFragment(employeeFragment);
+                    System.out.println("In EmloyeeListFragment DOB"+emp.getDob());
+                   // Toast.makeText(getActivity(), "Clicked on:"+emp.getName(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
 
     }
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
