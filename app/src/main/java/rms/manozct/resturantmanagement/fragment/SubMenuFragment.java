@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import rms.manozct.resturantmanagement.R;
@@ -25,8 +26,10 @@ import rms.manozct.resturantmanagement.activity.EmployeeActivity;
  */
 public class
 SubMenuFragment extends Fragment {
-   private ImageButton subMenubtn;
-   private Button selectMenuBtn;
+    private EditText subMenuText;
+    private Spinner menuName;
+    private EditText imageName;
+
 
 
 
@@ -48,24 +51,9 @@ SubMenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_sub_menu, container, false);
-        subMenubtn=(ImageButton) view.findViewById(R.id.menuBtn);
-        selectMenuBtn=(Button)view.findViewById(R.id.selectMenuBtn);
-        subMenubtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String subMenu=subMenubtn.getContext().toString();
-//                EmployeeActivity.replaceFragment(new SubMenuFragment());
-                Toast.makeText(SubMenuFragment.this.getActivity(), "Sub Menu:", Toast.LENGTH_SHORT).show();
-            }
-        });
-        selectMenuBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String subMenu=selectMenuBtn.getContext().toString();
-//                EmployeeActivity.replaceFragment(new SubMenuFragment());
-                Toast.makeText(SubMenuFragment.this.getActivity(), "Sub Menu:", Toast.LENGTH_SHORT).show();
-            }
-        });
+        subMenuText = (EditText) view.findViewById(R.id.subMenuTxt);
+        menuName=(Spinner)view.findViewById(R.id.mainMenuSpinner);
+        imageName=(EditText) view.findViewById(R.id.menuImageId);
         return view;
     }
 

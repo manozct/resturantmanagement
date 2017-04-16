@@ -72,6 +72,7 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_main, container, false);
+        EmployeeActivity.setTitle("Employee Operations");
         waiterBtn=(Button) view.findViewById(R.id.btnWaiter);
         managerBtn=(Button) view.findViewById(R.id.btnManager);
         cashierBtn=(Button)view.findViewById(R.id.btnCashier);

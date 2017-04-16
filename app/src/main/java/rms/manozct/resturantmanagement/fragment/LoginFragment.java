@@ -82,6 +82,7 @@ public class LoginFragment extends Fragment {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_login, container, false);
         final View view2=inflater.inflate(R.layout.fragment_main, container, false);
+        EmployeeActivity.setTitle("Login here");
         username=(AutoCompleteTextView)view.findViewById(R.id.username);
         user=(TextView)view.findViewById(R.id.nav_email);
         pswd=(EditText)view.findViewById(R.id.password);

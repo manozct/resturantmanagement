@@ -11,19 +11,25 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import rms.manozct.resturantmanagement.R;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link MenuFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link MenuFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import rms.manozct.resturantmanagement.R;
+import rms.manozct.resturantmanagement.activity.EmployeeActivity;
+import rms.manozct.resturantmanagement.database.DbHelper;
+import rms.manozct.resturantmanagement.model.Employee;
+import rms.manozct.resturantmanagement.model.Menu;
+import rms.manozct.resturantmanagement.model.Role;
+import rms.manozct.resturantmanagement.util.Util;
+
+
 public class MenuFragment extends Fragment {
   private EditText menuText;
     private Button submitBtn;
+    private Button deleteBtn;
+    private Menu menu;
+    private boolean isUpdate;
+
 
 
     private OnFragmentInteractionListener mListener;
@@ -37,6 +43,15 @@ public class MenuFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle bundleMenu = getArguments();
+        if (bundleMenu!=null){
+           // System.out.println("Inside onCreate of MenuFragment");
+            menu = (Menu) bundleMenu.getSerializable("menuKey");
+            //System.out.println("Menu id:"+menu.getMenuId());
+            if (menu!=null){
+                isUpdate = true;
+            }
+        }
 
     }
 
@@ -45,20 +60,80 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_menu, container, false);
+        EmployeeActivity.setTitle("Add Menu Here ");
         menuText=(EditText) view.findViewById(R.id.menuTxt);
         submitBtn=(Button) view.findViewById(R.id.submitBtn);
+        deleteBtn=(Button) view.findViewById(R.id.deleteBtn);
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String menuName=menuText.getText().toString();
-                Toast.makeText(MenuFragment.this.getActivity(),"Menu:"+menuName,Toast.LENGTH_SHORT).show();
+               // Toast.makeText(MenuFragment.this.getActivity(),"Menu:"+menuName,Toast.LENGTH_SHORT).show();
+                addMenu();
+                EmployeeActivity.replaceFragment(new MenuListFragment());
 
+            }
+        });
+        if (isUpdate){
+            setUpdateMenu();
+        }
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteMenu();
             }
         });
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+
+    public void addMenu(){
+        Menu menuItem = new Menu();
+        //Getting input from user and setting to employee model
+        menuItem.setMenuName(menuText.getText().toString());
+        //TODO other setter
+        DbHelper dbHelper = new DbHelper(getActivity());
+        dbHelper.write();
+        try {
+           if (isUpdate){
+
+                dbHelper.updateMenu(menu.getMenuId(), menuItem);
+                Toast.makeText(getActivity(), "Menu updated successfully", Toast.LENGTH_SHORT).show();
+            }else {
+               dbHelper.insertMenu(menuItem);
+               Toast.makeText(MenuFragment.this.getActivity(),"Menu added Successfully",Toast.LENGTH_SHORT).show();
+            }
+
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }finally {
+            dbHelper.close();
+        }
+    }
+    void setUpdateMenu(){
+        //System.out.println("Enter inside Update Method");
+        menuText.setText(menu.getMenuName());
+
+        //TODO
+    }
+     void deleteMenu(){
+       // System.out.println("delete method");
+       // System.out.println("delete emp ID:"+employee.getEmpId());
+
+        DbHelper dbHelper = new DbHelper(getActivity());
+        dbHelper.write();
+        dbHelper.deleteMenu(menu.getMenuId());
+        Toast.makeText(getActivity(), "Menu deleted successfully", Toast.LENGTH_SHORT).show();
+         EmployeeActivity.replaceFragment(new MenuListFragment());
+
+
+
+    }
+
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -82,16 +157,7 @@ public class MenuFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

@@ -139,6 +139,7 @@ public class DbHelper
 
 	// methods for MenuTbl
 	public List<Menu> getMenuList(Integer id) {
+
 		StringBuilder query = new StringBuilder();
 		query.append("SELECT * FROM " + RmsDb.MenuTbl.MENU_TABLE);
 		if (id!=null){
@@ -150,7 +151,7 @@ public class DbHelper
 		List<Menu> menulist= new ArrayList<>();
 
 		Menu menuob= null;
-		while(myCursor.isAfterLast() == false)
+		while(!myCursor.isAfterLast())
 		{
 			menuob= new Menu();
 			menuob.setMenuId(myCursor.getInt(myCursor.getColumnIndex(RmsDb.MenuTbl.MENU_ID)));
@@ -182,7 +183,7 @@ public class DbHelper
 	}
 	public void deleteMenu(Integer id){
 		StringBuilder query = new StringBuilder();
-		//query.append("DELETE FROM "+RmsDb.MenuTbl.MENU_NAME);
+		query.append("DELETE FROM "+RmsDb.MenuTbl.MENU_TABLE);
 		if (id!=null){
 			query.append(" WHERE " + RmsDb.MenuTbl.MENU_ID + "=" +String.valueOf(id));
 		}

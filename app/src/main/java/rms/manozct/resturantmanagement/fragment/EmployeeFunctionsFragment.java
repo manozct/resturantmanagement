@@ -68,6 +68,7 @@ public class EmployeeFunctionsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_employee_functions, container, false);
+        EmployeeActivity.setTitle("Add new Employee");
         // Inflate the layout for this fragment
         addEmpBtn=(Button)view.findViewById(R.id.btnAddNew);
         addEmpBtn.setOnClickListener(new View.OnClickListener() {

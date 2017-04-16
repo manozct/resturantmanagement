@@ -1,25 +1,54 @@
-
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:orientation="vertical"
     tools:context="rms.manozct.resturantmanagement.fragment.SubMenuFragment">
 
-    <ImageButton
-        android:id="@+id/menuBtn"
-        style="@style/Widget.AppCompat.ImageButton"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:srcCompat="@mipmap/ic_launcher" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/info_text_view"
+            android:text="Main Menu" />
+
+        <Spinner
+            style="@style/info_edit_text"
+            android:id="@+id/mainMenuSpinner"
+            android:layout_height="match_parent" />
+        <TextView
+            style="@style/info_text_view"
+            android:text="Sub Menu Name" />
+
+        <EditText
+            android:id="@+id/subMenuTxt"
+            style="@style/info_edit_text"
+            />
+        <TextView
+            style="@style/info_text_view"
+            android:text="Select Image" />
+
+        <EditText
+            android:id="@+id/menuImageId"
+            style="@style/info_edit_text"
+            />
 
 
-    <Button android:id="@+id/selectMenuBtn"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Select"/>
 
+        <Button
+            style="@style/ButtonNormalSubmit"
+            android:id="@+id/submitSubMenu"
+            android:text="Submit"
+            android:layout_marginBottom="10dp"/>
+        <Button
+            style="@style/ButtonNormalDelete"
+            android:id="@+id/deleteSubMenu"
+            android:text="Delete"
+            android:layout_marginBottom="10dp"/>
+    </LinearLayout>
 
-</LinearLayout>
+</ScrollView>
