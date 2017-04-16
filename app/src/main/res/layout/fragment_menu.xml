@@ -16,12 +16,13 @@
             android:text="Menu Item"
             android:layout_height="match_parent"
             android:layout_width="match_parent"/>
+
         <EditText
-            style="@style/info_edit_text"
             android:id="@+id/menuTxt"
+            style="@style/info_edit_text"
             android:layout_height="match_parent"
 
-            android:layout_width="wrap_content"/>
+            />
 
     <Button android:id="@+id/submitBtn"
         style="@style/ButtonNormalSubmit"

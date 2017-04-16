@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rms.manozct.resturantmanagement.R;
+import rms.manozct.resturantmanagement.activity.EmployeeActivity;
 import rms.manozct.resturantmanagement.database.DbHelper;
 import rms.manozct.resturantmanagement.model.Employee;
 import rms.manozct.resturantmanagement.model.Role;
@@ -77,7 +78,7 @@ public class EmployeeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_employee, container, false);
-
+        EmployeeActivity.setTitle("Add new Employee");
         nameText = (EditText) view.findViewById(R.id.nameTxt);
         userName=(EditText) view.findViewById(R.id.userNameTxt);
         password=(EditText)view.findViewById(R.id.passwordTxt);

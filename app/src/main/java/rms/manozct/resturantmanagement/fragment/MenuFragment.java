@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import rms.manozct.resturantmanagement.R;
+import rms.manozct.resturantmanagement.activity.EmployeeActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -45,6 +46,7 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_menu, container, false);
+        EmployeeActivity.setTitle("Add Menu Here ");
         menuText=(EditText) view.findViewById(R.id.menuTxt);
         submitBtn=(Button) view.findViewById(R.id.submitBtn);
         submitBtn.setOnClickListener(new View.OnClickListener() {

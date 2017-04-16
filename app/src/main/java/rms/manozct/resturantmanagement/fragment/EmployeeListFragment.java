@@ -58,6 +58,7 @@ public class EmployeeListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view=inflater.inflate(R.layout.fragment_employee_list, container, false);
+        EmployeeActivity.setTitle("Employee List");
         addButton = (Button) view.findViewById(R.id.addBtn);
 
         addButton.setOnClickListener(new View.OnClickListener() {
