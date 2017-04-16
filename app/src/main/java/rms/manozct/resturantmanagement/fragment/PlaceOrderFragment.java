@@ -10,10 +10,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.util.List;
 
 import rms.manozct.resturantmanagement.R;
 import rms.manozct.resturantmanagement.activity.EmployeeActivity;
+import rms.manozct.resturantmanagement.database.DbHelper;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +29,7 @@ import rms.manozct.resturantmanagement.activity.EmployeeActivity;
  */
 public class PlaceOrderFragment extends Fragment {
     private ListView listView;
+    private Spinner spinner;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -70,6 +75,8 @@ public class PlaceOrderFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Spinner spin=(Spinner) listView.findViewById(R.id.spinnerTable);
+
         View view=inflater.inflate(R.layout.fragment_place_order, container, false);
         listView=(ListView) view.findViewById(R.id.menuList);
         String[] values = new String[] { "Appetizer",
@@ -109,8 +116,34 @@ public class PlaceOrderFragment extends Fragment {
 
         });
 
+        // Spinner click listener
+//        spinner.setOnItemSelectedListener(this);
 
+        // Loading spinner data from database
+        loadSpinnerData();
         return view;
+    }
+    /**
+     * Function to load the spinner data from SQLite database
+     * */
+    private void loadSpinnerData() {
+        // database handler
+        DbHelper db = new DbHelper(getActivity()
+        );
+
+//        // Spinner Drop down elements
+//        List<String> lables = db.getAllLabels();
+//
+//        // Creating adapter for spinner
+//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+//                android.R.layout.simple_spinner_item, lables);
+//
+//        // Drop down layout style - list view with radio button
+//        dataAdapter
+//                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//        // attaching data adapter to spinner
+//        spinner.setAdapter(dataAdapter);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

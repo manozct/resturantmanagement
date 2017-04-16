@@ -17,12 +17,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Table Number" />
-
         <Spinner
-            android:id="@+id/spinner2"
-            android:layout_width="match_parent"
+            android:id="@+id/spinnerTable"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:layout_marginLeft="8dip"
+            android:layout_marginRight="8dip"
             />
+
     </TableRow>
         <ListView
 
