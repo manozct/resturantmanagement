@@ -53,12 +53,9 @@ public class EmployeeFragment extends Fragment {
     private EditText dobDate;
     private EditText hireDate;
     private Spinner spinnerPosition;
-<<<<<<< HEAD
     ArrayAdapter<Role> dataAdapter;
-=======
     private EditText salary;
 
->>>>>>> 5d2013ec1c2b5c54f76fd81cdf371c1b95879554
 
     private Button submitBtn;
     public EmployeeFragment() {
