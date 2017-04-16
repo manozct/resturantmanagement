@@ -1,4 +1,4 @@
-package rms.manozct.resturantmanagement.fragment;
+package rms.manozct.resturantmanagement.fragment ;
 
 import android.content.Context;
 import android.net.Uri;
@@ -53,7 +53,12 @@ public class EmployeeFragment extends Fragment {
     private EditText dobDate;
     private EditText hireDate;
     private Spinner spinnerPosition;
+<<<<<<< HEAD
     ArrayAdapter<Role> dataAdapter;
+=======
+    private EditText salary;
+
+>>>>>>> 5d2013ec1c2b5c54f76fd81cdf371c1b95879554
 
     private Button submitBtn;
     public EmployeeFragment() {
@@ -85,8 +90,9 @@ public class EmployeeFragment extends Fragment {
         addressText = (EditText) view.findViewById(R.id.addressTxt);
         contactNoText = (EditText) view.findViewById(R.id.contactTxt);
         ssnText = (EditText) view.findViewById(R.id.snnTxt);
-
+        salary=(EditText)view.findViewById(R.id.salary);
         dobDate = (EditText) view.findViewById(R.id.dob);
+    spinnerPosition=(Spinner)view.findViewById(R.id.positionSpinner);
         hireDate = (EditText) view.findViewById(R.id.hireDate);
 
         submitBtn = (Button) view.findViewById(R.id.submitBtn);
@@ -110,7 +116,7 @@ public class EmployeeFragment extends Fragment {
             submitData();
                 Toast.makeText(getActivity(), "Data saved Successfully", Toast.LENGTH_SHORT).show();
 
-                replaceFragment(new EmployeeListFragment());
+//                replaceFragment(new EmployeeListFragment());
 
             }
         });
@@ -166,9 +172,6 @@ public class EmployeeFragment extends Fragment {
         emp.setHireDay(Util.convertStringToDate(hireDate.getText().toString()));
         emp.setRole((Role)spinnerPosition.getSelectedItem());
 
-
-
-        //employee.setHireDay(Util.convertStringToDate(hireDate.getText().toString()));
         //TODO other setter
         DbHelper dbHelper = new DbHelper(getActivity());
         dbHelper.write();

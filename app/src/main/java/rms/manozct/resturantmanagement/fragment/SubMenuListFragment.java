@@ -7,25 +7,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import rms.manozct.resturantmanagement.R;
-import rms.manozct.resturantmanagement.activity.EmployeeActivity;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link OrderFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * create an instance of this fragment.
- */
-public class OrderFragment extends Fragment {
-private Button placeOrderBtn;
+public class SubMenuListFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
-    public OrderFragment() {
+    private int mColumnCount = 2;
+    public SubMenuListFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,18 +27,15 @@ private Button placeOrderBtn;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_order, container, false);
-
-        placeOrderBtn=(Button) view.findViewById(R.id.btnPlaceOrder);
-        placeOrderBtn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                EmployeeActivity.replaceFragment(new PlaceOrderFragment());
-            }
-        });
         // Inflate the layout for this fragment
-        return view;
+        return inflater.inflate(R.layout.fragment_sub_menu_list, container, false);
+    }
+
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
     }
 
     @Override
@@ -66,16 +55,6 @@ private Button placeOrderBtn;
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

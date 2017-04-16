@@ -1,6 +1,8 @@
 package rms.manozct.resturantmanagement.activity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -18,15 +20,46 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.util.List;
+
 import rms.manozct.resturantmanagement.R;
+import rms.manozct.resturantmanagement.adapter.BadgeDrawable;
+import rms.manozct.resturantmanagement.fragment.CashierFragment;
 import rms.manozct.resturantmanagement.fragment.EmployeeFragment;
+import rms.manozct.resturantmanagement.fragment.EmployeeFunctionsFragment;
 import rms.manozct.resturantmanagement.fragment.EmployeeListFragment;
+import rms.manozct.resturantmanagement.fragment.LoginFragment;
+import rms.manozct.resturantmanagement.fragment.MainFragment;
+//import rms.manozct.resturantmanagement.fragment.EmployeeListFragment;
 import rms.manozct.resturantmanagement.fragment.MenuFragment;
+import rms.manozct.resturantmanagement.fragment.OrderFragment;
+import rms.manozct.resturantmanagement.fragment.PlaceOrderFragment;
+import rms.manozct.resturantmanagement.fragment.SelectSubmenuFragment;
 import rms.manozct.resturantmanagement.fragment.SubMenuFragment;
+import rms.manozct.resturantmanagement.fragment.TableFragment;
 import rms.manozct.resturantmanagement.model.Employee;
 import rms.manozct.resturantmanagement.model.Role;
+import rms.manozct.resturantmanagement.model.SubMenu;
 
-public class EmployeeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, EmployeeFragment.OnFragmentInteractionListener,MenuFragment.OnFragmentInteractionListener,EmployeeListFragment.OnFragmentInteractionListener {
+//
+public class EmployeeActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener,
+        EmployeeFragment.OnFragmentInteractionListener,
+        MainFragment.OnFragmentInteractionListener,
+        OrderFragment.OnFragmentInteractionListener,
+        PlaceOrderFragment.OnFragmentInteractionListener,
+        SubMenuFragment.OnFragmentInteractionListener,
+        SelectSubmenuFragment.OnFragmentInteractionListener,
+        EmployeeFunctionsFragment.OnFragmentInteractionListener,
+        LoginFragment.OnFragmentInteractionListener,
+        CashierFragment.OnFragmentInteractionListener,
+        MenuFragment.OnFragmentInteractionListener
+{
+
+    //Cart Variables
+    MenuItem itemCart;
+    MenuItem itemNavCart;
+
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     private static FragmentManager fragmentManager;
@@ -34,7 +67,8 @@ public class EmployeeActivity extends AppCompatActivity implements NavigationVie
 
     private Toolbar toolbar;
 
-    public static Employee loginEmployee;
+
+    public List<SubMenu> cartList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,11 +98,11 @@ public class EmployeeActivity extends AppCompatActivity implements NavigationVie
             drawer.closeDrawer(GravityCompat.START);
         } else {
             int backCount = fragmentManager.getBackStackEntryCount();
-            System.out.println("back count:"+backCount);
-            if (backCount>0){
+            System.out.println("back count:" + backCount);
+            if (backCount > 0) {
                 //getCurrentFragment(fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1).getName());
                 super.onBackPressed();
-            }else {
+            } else {
                 //Check if backBtn is already pressed.
                 if (doubleBackToExitPressedOnce) {
                     exitApp();
@@ -113,35 +147,59 @@ public class EmployeeActivity extends AppCompatActivity implements NavigationVie
         return true;
     }
 
-    public void changeLayout(int id){
+    public void changeLayout(int id) {
         switch (id) {
+            //my Account
             case R.id.nav_account:
                 //if (Role.MANAGER==loginEmployee.getRole()){
-                    replaceFragment(new EmployeeFragment());
+                replaceFragment(new EmployeeFragment());
                 /*}else {
                     Toast.makeText(this, "You are not authorized to Add user", Toast.LENGTH_SHORT).show();
                 }*/
                 break;
-            case R.id.nav_cart:
-                replaceFragment(new EmployeeFragment());
+            //login
+            case R.id.nav_login:
+                replaceFragment(new LoginFragment());
                 break;
+            //for home menu
+            case R.id.nav_dashboard:
+                replaceFragment(new MainFragment());
+                break;
+            //for user menu
+            case R.id.nav_category:
+                replaceFragment(new MainFragment());
+                break;
+
+            //inventory menu
+            case R.id.nav_product:
+                replaceFragment(new CashierFragment());
+                break;
+            //menu
             case R.id.nav_wishlist:
                 replaceFragment(new MenuFragment());
                 break;
-            case R.id.nav_category:
-                replaceFragment(new EmployeeListFragment());
+            //table
+            case R.id.nav_table:
+                replaceFragment(new TableFragment());
                 break;
-
+            //
+            case R.id.nav_report:
+                replaceFragment(new MenuFragment());
+                break;
 
 
         }
     }
 
+<<<<<<< HEAD
     public static void replaceFragment(Fragment newFragment){
+=======
+    public static void replaceFragment(Fragment newFragment) {
+>>>>>>> 5d2013ec1c2b5c54f76fd81cdf371c1b95879554
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_frame, newFragment);
         String backStateName = newFragment.getClass().getName();
-        System.out.println("Fragment tag:"+backStateName);
+        System.out.println("Fragment tag:" + backStateName);
         fragmentTransaction.addToBackStack(backStateName);    //Add previous state to backstack
         fragmentTransaction.commit();
     }
@@ -154,7 +212,57 @@ public class EmployeeActivity extends AppCompatActivity implements NavigationVie
         toggle.setDrawerIndicatorEnabled(enabled);
     }*/
 
-    private void exitApp(){
+    public boolean checkIfAddedToCart(SubMenu subMenu) {
+        return cartList.contains(subMenu);
+    }
+
+    public void addToCart(SubMenu subMenu) {
+        if (!checkIfAddedToCart(subMenu)) {
+            cartList.add(subMenu);
+            System.out.println("Add Cart list size:" + cartList.size());
+            setBadgeCount(Integer.toString(cartList.size()));
+            setNavBadgeCount(Integer.toString(cartList.size()));
+        }
+    }
+
+
+    public void setBadgeCount(String count) {
+        BadgeDrawable badge;
+        LayerDrawable icon = (LayerDrawable) itemCart.getIcon();
+        // Reuse drawable if possible
+        Drawable reuse = icon.findDrawableByLayerId(R.id.ic_badge);
+        if (reuse != null && reuse instanceof BadgeDrawable) {
+            badge = (BadgeDrawable) reuse;
+        } else {
+            badge = new BadgeDrawable(this);
+        }
+
+        if (count!=null){
+            badge.setCount(count);
+        }
+        icon.mutate();
+        icon.setDrawableByLayerId(R.id.ic_badge, badge);
+    }
+
+    public void setNavBadgeCount(String count) {
+        BadgeDrawable badge;
+        LayerDrawable icon = (LayerDrawable) itemNavCart.getIcon();
+        // Reuse drawable if possible
+        Drawable reuse = icon.findDrawableByLayerId(R.id.ic_nav_badge);
+        if (reuse != null && reuse instanceof BadgeDrawable) {
+            badge = (BadgeDrawable) reuse;
+        } else {
+            badge = new BadgeDrawable(this);
+        }
+
+        if (count!=null){
+            badge.setCount(count);
+        }
+        icon.mutate();
+        icon.setDrawableByLayerId(R.id.ic_nav_badge, badge);
+    }
+
+    private void exitApp() {
         finish();
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

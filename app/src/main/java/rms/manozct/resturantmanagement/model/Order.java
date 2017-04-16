@@ -9,6 +9,11 @@ public class Order {
     private Table table;
     private Waiter waiter;
     private SubMenu subMenu;
+    private Integer menuId;
+    private Integer waiterId;
+    Order(Integer menuId,Integer waiterId){
+
+    }
 
     public Integer getOrderId() {
         return orderId;
