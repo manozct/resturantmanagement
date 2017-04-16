@@ -1,0 +1,60 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="rms.manozct.resturantmanagement.fragment.MainFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="20dp">
+
+            <Button
+                android:id="@+id/btnWaiter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Waiter" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="20dp">
+
+            <Button
+                android:id="@+id/btnManager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Manager"
+
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="20dp">
+
+            <Button
+                android:id="@+id/btnCashier"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Cashier"
+
+                />
+        </TableRow>
+
+
+    </TableLayout>
+</LinearLayout>
