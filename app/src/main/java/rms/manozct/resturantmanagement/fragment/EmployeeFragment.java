@@ -195,8 +195,8 @@ public class EmployeeFragment extends Fragment {
         }
     }
     public void deleteData(){
-        System.out.println("delete method");
-        System.out.println("delete emp ID:"+employee.getEmpId());
+       // System.out.println("delete method");
+       // System.out.println("delete emp ID:"+employee.getEmpId());
 
         DbHelper dbHelper = new DbHelper(getActivity());
         dbHelper.write();

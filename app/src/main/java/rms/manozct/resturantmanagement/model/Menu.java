@@ -1,10 +1,12 @@
 package rms.manozct.resturantmanagement.model;
 
+import java.io.Serializable;
+
 /**
  * Created by manozct on 4/10/2017.
  */
 
-public class Menu {
+public class Menu implements Serializable {
     private Integer menuId;
     private String menuName;
     public static Integer id=100;

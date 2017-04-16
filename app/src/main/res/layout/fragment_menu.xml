@@ -13,19 +13,21 @@
 
         <TextView
             style="@style/info_text_view"
-            android:text="Menu Item"
+            android:text="Add Main Menu"
             android:layout_height="match_parent"
             android:layout_width="match_parent"/>
         <EditText
             style="@style/info_edit_text"
-            android:id="@+id/menuTxt"
-            android:layout_height="match_parent"
+            android:id="@+id/menuTxt"/>
 
-            android:layout_width="wrap_content"/>
 
     <Button android:id="@+id/submitBtn"
         style="@style/ButtonNormalSubmit"
        android:layout_marginBottom="10dp"
         android:text="Submit"/>
+        <Button android:id="@+id/deleteBtn"
+            style="@style/ButtonNormalDelete"
+            android:layout_marginBottom="10dp"
+            android:text="Delete"/>
     </LinearLayout>
 </ScrollView>

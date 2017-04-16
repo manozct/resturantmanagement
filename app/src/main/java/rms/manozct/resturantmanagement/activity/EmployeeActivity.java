@@ -36,6 +36,7 @@ import rms.manozct.resturantmanagement.fragment.LoginFragment;
 import rms.manozct.resturantmanagement.fragment.MainFragment;
 //import rms.manozct.resturantmanagement.fragment.EmployeeListFragment;
 import rms.manozct.resturantmanagement.fragment.MenuFragment;
+import rms.manozct.resturantmanagement.fragment.MenuListFragment;
 import rms.manozct.resturantmanagement.fragment.OrderFragment;
 import rms.manozct.resturantmanagement.fragment.PlaceOrderFragment;
 import rms.manozct.resturantmanagement.fragment.SelectSubmenuFragment;
@@ -60,7 +61,10 @@ public class EmployeeActivity extends AppCompatActivity
         CashierFragment.OnFragmentInteractionListener,
         MenuFragment.OnFragmentInteractionListener,
         EmployeeListFragment.OnFragmentInteractionListener,
-        SubMenuListFragment.OnFragmentInteractionListener
+        SubMenuListFragment.OnFragmentInteractionListener,
+        MenuListFragment.OnFragmentInteractionListener
+
+
 {
 
     //Cart Variables
@@ -198,7 +202,8 @@ public class EmployeeActivity extends AppCompatActivity
                 break;
             //for user menu
             case R.id.nav_category:
-                replaceFragment(new SubMenuListFragment());
+                //replaceFragment(new SubMenuListFragment());
+                replaceFragment(new SubMenuFragment());
                 break;
 
             //inventory menu
@@ -207,7 +212,7 @@ public class EmployeeActivity extends AppCompatActivity
                 break;
             //menu
             case R.id.nav_wishlist:
-                replaceFragment(new MenuFragment());
+                replaceFragment(new MenuListFragment());
                 break;
             //table
             case R.id.nav_table:
@@ -215,7 +220,7 @@ public class EmployeeActivity extends AppCompatActivity
                 break;
             //
             case R.id.nav_report:
-                replaceFragment(new MenuFragment());
+                replaceFragment(new EmployeeListFragment());
                 break;
 
 
