@@ -34,6 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="username@gmail.com" />
+
         <TextView
             android:id="@+id/nav_logout"
             android:layout_width="match_parent"
@@ -41,9 +42,7 @@
             android:layout_gravity="right"
             android:gravity="right"
             android:text="Logout"
-            android:textAllCaps="true"
-            android:textStyle="bold"
-            android:textColor="@color/text"/>
+            android:textAppearance="@style/TextAppearance.AppCompat" />
     </LinearLayout>
 
 

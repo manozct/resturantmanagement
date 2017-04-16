@@ -32,6 +32,7 @@ public class LoginFragment extends Fragment {
     private AutoCompleteTextView username;
     private EditText pswd;
     private Button btnLogin;
+    public TextView user;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -81,7 +82,9 @@ public class LoginFragment extends Fragment {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_login, container, false);
         final View view2=inflater.inflate(R.layout.fragment_main, container, false);
+        EmployeeActivity.setTitle("Login here");
         username=(AutoCompleteTextView)view.findViewById(R.id.username);
+        user=(TextView)view.findViewById(R.id.nav_email);
         pswd=(EditText)view.findViewById(R.id.password);
         btnLogin=(Button)view.findViewById(R.id.email_sign_in_button);
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +92,7 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 boolean check=checkLogin(username.getText().toString(),pswd.getText().toString());
                if (check){
+                   ((EmployeeActivity)getActivity()).hideLoginNav();
                   if( EmployeeActivity.loginEmployee.getRole()== Role.MANAGER)
                    EmployeeActivity.replaceFragment(new EmployeeFunctionsFragment());
                   else if( EmployeeActivity.loginEmployee.getRole()== Role.WAITER)
@@ -100,7 +104,6 @@ public class LoginFragment extends Fragment {
                 Toast.makeText(LoginFragment.this.getActivity(), "Username or password is incorrect", Toast.LENGTH_SHORT).show();
              }
         });
-
 
         return view;
     }

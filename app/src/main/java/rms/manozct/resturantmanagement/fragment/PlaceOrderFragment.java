@@ -30,6 +30,7 @@ import rms.manozct.resturantmanagement.database.DbHelper;
 public class PlaceOrderFragment extends Fragment {
     private ListView listView;
     private Spinner spinner;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -75,10 +76,12 @@ public class PlaceOrderFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Spinner spin=(Spinner) listView.findViewById(R.id.spinnerTable);
-
         View view=inflater.inflate(R.layout.fragment_place_order, container, false);
+        EmployeeActivity.setTitle("Place Order Here");
         listView=(ListView) view.findViewById(R.id.menuList);
+        Spinner spin=(Spinner) listView.findViewById(R.id.spinner);
+        spinner=(Spinner)view.findViewById(R.id.spinnerTable) ;
+
         String[] values = new String[] { "Appetizer",
                 "BreakFast",
                 "Lunch",
@@ -89,21 +92,15 @@ public class PlaceOrderFragment extends Fragment {
         };
 
 
-        //ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,R.layout.fragment_menu_row,R.id.lstViewRow,values);
-        // Inflate the layout for this fragment
-
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(this.getActivity(),R.layout.fragment_menu_row,R.id.lstViewRow,values);
-
        listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-
                 // ListView Clicked item index
                 int itemPosition     = position;
-
                 // ListView Clicked item value
                 String  itemValue    = (String) listView.getItemAtPosition(position);
                 EmployeeActivity.replaceFragment(new SelectSubmenuFragment());
@@ -116,11 +113,18 @@ public class PlaceOrderFragment extends Fragment {
 
         });
 
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this.getContext(),
+                R.array.tables_array, android.R.layout.simple_spinner_dropdown_item);
+// Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+        spinner.setAdapter(adapter1);
+
         // Spinner click listener
 //        spinner.setOnItemSelectedListener(this);
 
         // Loading spinner data from database
-        loadSpinnerData();
+//        loadSpinnerData();
         return view;
     }
     /**

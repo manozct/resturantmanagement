@@ -11,4 +11,14 @@
         <item>102</item>
 
     </string-array>
+    <string-array name="tables_array">
+        <item>Table 1</item>
+        <item>Table 2</item>
+        <item>Table 3</item>
+        <item>Table 4</item>
+        <item>Table 5</item>
+        <item>Table 6</item>
+        <item>Table 7</item>
+        <item>Table 8</item>
+    </string-array>
 </resources>

@@ -71,10 +71,11 @@ public class EmployeeActivity extends AppCompatActivity
     MenuItem itemCart;
 
     private DrawerLayout drawer;
-    public static Employee loginEmployee;
     private ActionBarDrawerToggle toggle;
     private static FragmentManager fragmentManager;
+    public static Employee loginEmployee;
     private boolean doubleBackToExitPressedOnce = false;
+
 
     private static Toolbar toolbar;
 
@@ -82,6 +83,7 @@ public class EmployeeActivity extends AppCompatActivity
     MenuItem navAccnt;
 
     TextView navLogout;
+    TextView navUsername;
 
     public List<SubMenu> cartList;
 
@@ -104,7 +106,7 @@ public class EmployeeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        navigationView.setCheckedItem(R.id.nav_dashboard);
+        navigationView.setCheckedItem(R.id.nav_login);
 
         cartList = new ArrayList<>();
 
@@ -114,6 +116,7 @@ public class EmployeeActivity extends AppCompatActivity
         navLogin = menuNav.findItem(R.id.nav_login);
 
         View hView =  navigationView.getHeaderView(0);
+
         navLogout = (TextView) hView.findViewById(R.id.nav_logout);
         navLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +126,7 @@ public class EmployeeActivity extends AppCompatActivity
             }
         });
 
+        navUsername = (TextView) hView.findViewById(R.id.nav_email);
         if (loginEmployee!=null){
             hideLoginNav();
         }else {
@@ -307,14 +311,16 @@ public class EmployeeActivity extends AppCompatActivity
     }
 
     public void hideLoginNav(){
+        navLogout.setVisibility(View.VISIBLE);
         navLogin.setVisible(false);
         navAccnt.setVisible(true);
-        navLogout.setVisibility(View.VISIBLE);
+        navUsername.setText(loginEmployee.getEmpUserName());
     }
 
     public void showLoginNav(){
         navLogin.setVisible(true);
         navAccnt.setVisible(false);
         navLogout.setVisibility(View.GONE);
+        navUsername.setText(" ");
     }
 }

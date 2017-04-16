@@ -60,6 +60,7 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_menu, container, false);
+        EmployeeActivity.setTitle("Add Menu Here ");
         menuText=(EditText) view.findViewById(R.id.menuTxt);
         submitBtn=(Button) view.findViewById(R.id.submitBtn);
         deleteBtn=(Button) view.findViewById(R.id.deleteBtn);
