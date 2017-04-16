@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -18,14 +17,10 @@ import android.widget.Toast;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import rms.manozct.resturantmanagement.R;
-import rms.manozct.resturantmanagement.activity.EmployeeActivity;
 import rms.manozct.resturantmanagement.database.DbHelper;
-import rms.manozct.resturantmanagement.database.RmsDb;
 import rms.manozct.resturantmanagement.model.Employee;
 import rms.manozct.resturantmanagement.model.Role;
 import rms.manozct.resturantmanagement.util.Util;
@@ -116,14 +111,14 @@ public class EmployeeFragment extends Fragment {
             submitData();
                 Toast.makeText(getActivity(), "Data saved Successfully", Toast.LENGTH_SHORT).show();
 
-//                replaceFragment(new EmployeeListFragment());
+             replaceFragment(new EmployeeListFragment());
 
             }
         });
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DeleteData();
+                deleteData();
 
             }
         });
@@ -199,11 +194,15 @@ public class EmployeeFragment extends Fragment {
             dbHelper.close();
         }
     }
-    public void DeleteData(){
+    public void deleteData(){
         System.out.println("delete method");
-        Toast.makeText(getActivity(), employee.getEmpId(), Toast.LENGTH_SHORT).show();
+        System.out.println("delete emp ID:"+employee.getEmpId());
+
         DbHelper dbHelper = new DbHelper(getActivity());
+        dbHelper.write();
         dbHelper.deleteEmployee(employee.getEmpId());
+        Toast.makeText(getActivity(), "Data deleted successfully", Toast.LENGTH_SHORT).show();
+
 
 
     }

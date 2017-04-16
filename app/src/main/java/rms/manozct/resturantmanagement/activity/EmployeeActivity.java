@@ -59,6 +59,7 @@ public class EmployeeActivity extends AppCompatActivity
         LoginFragment.OnFragmentInteractionListener,
         CashierFragment.OnFragmentInteractionListener,
         MenuFragment.OnFragmentInteractionListener,
+        EmployeeListFragment.OnFragmentInteractionListener,
         SubMenuListFragment.OnFragmentInteractionListener
 {
 
@@ -186,7 +187,7 @@ public class EmployeeActivity extends AppCompatActivity
             //my Account
             case R.id.nav_account:
                 //if (Role.MANAGER==loginEmployee.getRole()){
-                replaceFragment(new EmployeeFragment());
+                replaceFragment(new EmployeeListFragment());
                 /*}else {
                     Toast.makeText(this, "You are not authorized to Add user", Toast.LENGTH_SHORT).show();
                 }*/
