@@ -61,6 +61,7 @@ public class EmployeeActivity extends AppCompatActivity
     MenuItem itemNavCart;
 
     private DrawerLayout drawer;
+    public static Employee loginEmployee;
     private ActionBarDrawerToggle toggle;
     private static FragmentManager fragmentManager;
     private boolean doubleBackToExitPressedOnce = false;
@@ -191,11 +192,7 @@ public class EmployeeActivity extends AppCompatActivity
         }
     }
 
-<<<<<<< HEAD
-    public static void replaceFragment(Fragment newFragment){
-=======
     public static void replaceFragment(Fragment newFragment) {
->>>>>>> 5d2013ec1c2b5c54f76fd81cdf371c1b95879554
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_frame, newFragment);
         String backStateName = newFragment.getClass().getName();

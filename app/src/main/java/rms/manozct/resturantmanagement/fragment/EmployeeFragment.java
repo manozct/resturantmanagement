@@ -41,6 +41,7 @@ public class EmployeeFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+
     private boolean isUpdate;
     private  Employee employee;
 
@@ -58,6 +59,7 @@ public class EmployeeFragment extends Fragment {
 
 
     private Button submitBtn;
+    private Button deleteBtn;
     public EmployeeFragment() {
         // Required empty public constructor
     }
@@ -93,6 +95,7 @@ public class EmployeeFragment extends Fragment {
         hireDate = (EditText) view.findViewById(R.id.hireDate);
 
         submitBtn = (Button) view.findViewById(R.id.submitBtn);
+        deleteBtn = (Button) view.findViewById(R.id.deleteBtn);
         spinnerPosition=(Spinner)view.findViewById(R.id.positionSpinner);
 
         List<String>positions=new ArrayList<String>();
@@ -117,6 +120,14 @@ public class EmployeeFragment extends Fragment {
 
             }
         });
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DeleteData();
+
+            }
+        });
+
 
         if (isUpdate){
             setUpdateData();
@@ -187,6 +198,14 @@ public class EmployeeFragment extends Fragment {
         }finally {
             dbHelper.close();
         }
+    }
+    public void DeleteData(){
+        System.out.println("delete method");
+        Toast.makeText(getActivity(), employee.getEmpId(), Toast.LENGTH_SHORT).show();
+        DbHelper dbHelper = new DbHelper(getActivity());
+        dbHelper.deleteEmployee(employee.getEmpId());
+
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
