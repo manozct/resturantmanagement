@@ -8,13 +8,7 @@ public class Menu {
     private Integer menuId;
     private String menuName;
     public static Integer id=100;
-    Menu(Integer menuId,String name){
-        this.menuId=menuId;
-        this.menuName=name;
-    }
-    Menu(String menuName){
-        this.menuName=menuName;
-    }
+
     public Integer getMenuId() {
         return menuId;
     }

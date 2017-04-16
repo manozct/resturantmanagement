@@ -4,21 +4,28 @@ package rms.manozct.resturantmanagement.model;
  * Created by manozct on 4/10/2017.
  */
 
-public class SubMenu extends Menu {
+public class SubMenu
+{
     private Integer subMenuId;
     private String subMenuName;
     private Double price;
-    SubMenu(Integer menuId,String menuName,Integer subMenuId,String subMenuName,Double price){
-        super(menuName);
-        this.subMenuId=subMenuId;
-        this.subMenuName=subMenuName;
-        this.price=price;
+    private  String imageUrl;
+    private Integer mainMenuId;
+
+    public Integer getMainMenuId() {
+        return mainMenuId;
     }
 
-    public SubMenu(String menuName, String subMenuName, Double price) {
-        super(menuName);
-        this.subMenuName = subMenuName;
-        this.price = price;
+    public void setMainMenuId(Integer mainMenuId) {
+        this.mainMenuId = mainMenuId;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public Integer getSubMenuId() {
@@ -43,8 +50,5 @@ public class SubMenu extends Menu {
 
     public void setPrice(Double price) {
         this.price = price;
-    }
-    public String toString(){
-        return super.toString()+"Sub Menu: "+this.subMenuName;
     }
 }
