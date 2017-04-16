@@ -1,10 +1,10 @@
 package rms.manozct.resturantmanagement.activity;
 
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -15,7 +15,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,7 +35,6 @@ import rms.manozct.resturantmanagement.fragment.EmployeeFunctionsFragment;
 import rms.manozct.resturantmanagement.fragment.EmployeeListFragment;
 import rms.manozct.resturantmanagement.fragment.LoginFragment;
 import rms.manozct.resturantmanagement.fragment.MainFragment;
-//import rms.manozct.resturantmanagement.fragment.EmployeeListFragment;
 import rms.manozct.resturantmanagement.fragment.MenuFragment;
 import rms.manozct.resturantmanagement.fragment.OrderFragment;
 import rms.manozct.resturantmanagement.fragment.PlaceOrderFragment;
@@ -45,8 +43,9 @@ import rms.manozct.resturantmanagement.fragment.SubMenuFragment;
 import rms.manozct.resturantmanagement.fragment.SubMenuListFragment;
 import rms.manozct.resturantmanagement.fragment.TableFragment;
 import rms.manozct.resturantmanagement.model.Employee;
-import rms.manozct.resturantmanagement.model.Role;
 import rms.manozct.resturantmanagement.model.SubMenu;
+
+//import rms.manozct.resturantmanagement.fragment.EmployeeListFragment;
 
 //
 public class EmployeeActivity extends AppCompatActivity
@@ -64,7 +63,8 @@ public class EmployeeActivity extends AppCompatActivity
         EmployeeListFragment.OnFragmentInteractionListener,
         SubMenuListFragment.OnFragmentInteractionListener,
         CartFragment.OnFragmentInteractionListener,
-        OnListFragmentInteractionListener
+        OnListFragmentInteractionListener,
+        TableFragment.OnFragmentInteractionListener
 
 {
 
