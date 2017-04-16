@@ -1,27 +1,32 @@
 package rms.manozct.resturantmanagement.fragment;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import rms.manozct.resturantmanagement.R;
+import rms.manozct.resturantmanagement.activity.EmployeeActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
  * {@link SubMenuFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.* create an instance of this fragment.
+ * to handle interaction events.
+// * Use the {@link SubMenuFragment} factory method to
+ * create an instance of this fragment.
  */
-public class SubMenuFragment extends Fragment {
-   private EditText subMenuText;
-   private Button submitBtn;
+public class
+SubMenuFragment extends Fragment {
+   private ImageButton subMenubtn;
+   private Button selectMenuBtn;
 
 
 
@@ -43,13 +48,22 @@ public class SubMenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_sub_menu, container, false);
-        subMenuText=(EditText)view.findViewById(R.id.menuTxt);
-        submitBtn=(Button)view.findViewById(R.id.submitBtn);
-        submitBtn.setOnClickListener(new View.OnClickListener() {
+        subMenubtn=(ImageButton) view.findViewById(R.id.menuBtn);
+        selectMenuBtn=(Button)view.findViewById(R.id.selectMenuBtn);
+        subMenubtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String subMenu=subMenuText.getText().toString();
-                Toast.makeText(SubMenuFragment.this.getActivity(), "Sub Menu:"+subMenu, Toast.LENGTH_SHORT).show();
+                String subMenu=subMenubtn.getContext().toString();
+//                EmployeeActivity.replaceFragment(new SubMenuFragment());
+                Toast.makeText(SubMenuFragment.this.getActivity(), "Sub Menu:", Toast.LENGTH_SHORT).show();
+            }
+        });
+        selectMenuBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String subMenu=selectMenuBtn.getContext().toString();
+//                EmployeeActivity.replaceFragment(new SubMenuFragment());
+                Toast.makeText(SubMenuFragment.this.getActivity(), "Sub Menu:", Toast.LENGTH_SHORT).show();
             }
         });
         return view;

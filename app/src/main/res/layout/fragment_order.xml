@@ -3,6 +3,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="rms.manozct.resturantmanagement.fragment.OrderFragment">
+<TableLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+    <TableRow
+        android:padding="20dp">
+        <Button
+            android:id="@+id/btnPlaceOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Place Order"
+            android:padding="20dp"/>
+    </TableRow>
+    <TableRow
+        android:padding="20dp">
+        <Button
+            android:id="@+id/btnTableFree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Vaccant Tables"
+            android:padding="20dp"/>
+    </TableRow>
+    <TableRow
+        android:padding="20dp">
+        <Button
+            android:id="@+id/btnTableFull"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Occupied Tables"
+            android:padding="20dp"/>
+    </TableRow>
 
-
+</TableLayout>
 </LinearLayout>

@@ -6,7 +6,8 @@ import java.util.Date;
  * Created by manozct on 4/11/2017.
  */
 
-public class Bill {
+public class Bill
+{
     private Integer billNo;
     private Order order;
     private double tax;
@@ -15,10 +16,12 @@ public class Bill {
     private double totalAmount;
     private Date billingDate;
     private int cashierId;
+    private Payment payment;
 
-    //    private Payment payment;
-    Bill(){
-
+    Bill()
+    {
+    this.payment=new Payment( 100.0+this.getBillNo(),false);
+        this.payment.setBill(this);
 
     }
     public Integer getBillNo() {
@@ -84,7 +87,14 @@ public class Bill {
     public void setCashierId(int cashierId) {
         this.cashierId = cashierId;
     }
-
+    public void setPayment(Payment payment)
+    {
+        this.payment=payment;
+    }
+public Payment getPayment()
+{
+    return this.payment;
+}
 
 
 }

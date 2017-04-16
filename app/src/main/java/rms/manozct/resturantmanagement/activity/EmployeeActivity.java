@@ -19,17 +19,39 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import rms.manozct.resturantmanagement.R;
+import rms.manozct.resturantmanagement.fragment.CashierFragment;
 import rms.manozct.resturantmanagement.fragment.EmployeeFragment;
+import rms.manozct.resturantmanagement.fragment.EmployeeFunctionsFragment;
 import rms.manozct.resturantmanagement.fragment.EmployeeListFragment;
+import rms.manozct.resturantmanagement.fragment.LoginFragment;
+import rms.manozct.resturantmanagement.fragment.MainFragment;
+//import rms.manozct.resturantmanagement.fragment.EmployeeListFragment;
 import rms.manozct.resturantmanagement.fragment.MenuFragment;
+import rms.manozct.resturantmanagement.fragment.OrderFragment;
+import rms.manozct.resturantmanagement.fragment.PlaceOrderFragment;
+import rms.manozct.resturantmanagement.fragment.SelectSubmenuFragment;
 import rms.manozct.resturantmanagement.fragment.SubMenuFragment;
+import rms.manozct.resturantmanagement.fragment.TableFragment;
 import rms.manozct.resturantmanagement.model.Employee;
 import rms.manozct.resturantmanagement.model.Role;
+//
+public class EmployeeActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener,
+                    EmployeeFragment.OnFragmentInteractionListener,
+                    MainFragment.OnFragmentInteractionListener,
+        OrderFragment.OnFragmentInteractionListener,
+        PlaceOrderFragment.OnFragmentInteractionListener,
+        SubMenuFragment.OnFragmentInteractionListener,
+        SelectSubmenuFragment.OnFragmentInteractionListener,
+        EmployeeFunctionsFragment.OnFragmentInteractionListener,
+        LoginFragment.OnFragmentInteractionListener,
+        CashierFragment.OnFragmentInteractionListener
 
-public class EmployeeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, EmployeeFragment.OnFragmentInteractionListener,MenuFragment.OnFragmentInteractionListener,EmployeeListFragment.OnFragmentInteractionListener {
+                    {
+
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
-    private FragmentManager fragmentManager;
+    private static FragmentManager fragmentManager;
     private boolean doubleBackToExitPressedOnce = false;
 
     private Toolbar toolbar;
@@ -115,6 +137,7 @@ public class EmployeeActivity extends AppCompatActivity implements NavigationVie
 
     public void changeLayout(int id){
         switch (id) {
+          //my Account
             case R.id.nav_account:
                 //if (Role.MANAGER==loginEmployee.getRole()){
                     replaceFragment(new EmployeeFragment());
@@ -122,22 +145,41 @@ public class EmployeeActivity extends AppCompatActivity implements NavigationVie
                     Toast.makeText(this, "You are not authorized to Add user", Toast.LENGTH_SHORT).show();
                 }*/
                 break;
-            case R.id.nav_cart:
-                replaceFragment(new EmployeeFragment());
+            //login
+            case R.id.nav_login:
+                replaceFragment(new LoginFragment());
                 break;
+            //for home menu
+            case R.id.nav_dashboard:
+                replaceFragment(new MainFragment());
+                break;
+            //for user menu
+            case R.id.nav_category:
+                replaceFragment(new MainFragment());
+                break;
+
+            //inventory menu
+            case R.id.nav_product:
+                replaceFragment(new CashierFragment());
+                break;
+            //menu
             case R.id.nav_wishlist:
                 replaceFragment(new MenuFragment());
                 break;
-            case R.id.nav_category:
-                replaceFragment(new EmployeeListFragment());
+            //table
+            case R.id.nav_table:
+                replaceFragment(new TableFragment());
                 break;
-
+            //
+            case R.id.nav_report:
+                replaceFragment(new MenuFragment());
+                break;
 
 
         }
     }
 
-    public void replaceFragment(Fragment newFragment){
+    public static void replaceFragment(Fragment newFragment){
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_frame, newFragment);
         String backStateName = newFragment.getClass().getName();

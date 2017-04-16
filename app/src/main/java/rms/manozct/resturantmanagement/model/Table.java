@@ -8,7 +8,11 @@ public class Table {
     private Integer tableId;
     private String tableName;
     private Boolean tableStatus;
-
+    Table(Integer tableId,String name,Boolean status){
+        this.tableId=tableId;
+        this.tableName=name;
+        this.tableStatus=status;
+    }
     public Integer getTableId() {
         return tableId;
     }

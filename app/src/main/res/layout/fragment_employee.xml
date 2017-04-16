@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:orientation="vertical"
     tools:context="rms.manozct.resturantmanagement.fragment.EmployeeFragment">
 
@@ -48,6 +49,7 @@
     <TextView
         style="@style/info_text_view"
         android:layout_width="wrap_content"
+
         android:layout_height="wrap_content"
         android:text="Date of Birth" />
 
@@ -95,8 +97,17 @@
         style="@style/info_edit_text"
         android:id="@+id/positionSpinner"
         android:layout_height="match_parent" />
-
-
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:text="Salary"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/salary"/>
+    <TextView
+        style="@style/info_text_view"
+        android:text="Contact" />
     <Button
         style="@style/ButtonNormalSubmit"
         android:id="@+id/submitBtn"

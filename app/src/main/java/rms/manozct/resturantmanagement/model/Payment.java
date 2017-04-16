@@ -9,11 +9,16 @@ public class Payment {
     private Boolean paymentStatus;
     private Bill bill;
 
-    public Payment(Double paymentId, Boolean paymentStatus) {
+    public Payment(Double paymentId, Boolean paymentStatus)
+    {
         this.paymentId = paymentId;
         this.paymentStatus = paymentStatus;
+        this.bill.getPayment();
     }
-
+public void setBill(Bill bill)
+{
+    this.bill=bill;
+}
     public Double getPaymentId() {
         return paymentId;
     }
