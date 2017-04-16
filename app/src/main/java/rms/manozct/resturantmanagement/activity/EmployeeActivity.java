@@ -28,6 +28,8 @@ import java.util.List;
 
 import rms.manozct.resturantmanagement.R;
 import rms.manozct.resturantmanagement.adapter.BadgeDrawable;
+import rms.manozct.resturantmanagement.adapter.OnListFragmentInteractionListener;
+import rms.manozct.resturantmanagement.fragment.CartFragment;
 import rms.manozct.resturantmanagement.fragment.CashierFragment;
 import rms.manozct.resturantmanagement.fragment.EmployeeFragment;
 import rms.manozct.resturantmanagement.fragment.EmployeeFunctionsFragment;
@@ -60,7 +62,10 @@ public class EmployeeActivity extends AppCompatActivity
         CashierFragment.OnFragmentInteractionListener,
         MenuFragment.OnFragmentInteractionListener,
         EmployeeListFragment.OnFragmentInteractionListener,
-        SubMenuListFragment.OnFragmentInteractionListener
+        SubMenuListFragment.OnFragmentInteractionListener,
+        CartFragment.OnFragmentInteractionListener,
+        OnListFragmentInteractionListener
+
 {
 
     //Cart Variables
@@ -168,6 +173,11 @@ public class EmployeeActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        switch (id){
+            case R.id.action_cart:
+                showCartFragment();
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -279,7 +289,7 @@ public class EmployeeActivity extends AppCompatActivity
         if (cartList.size()<1){
             Toast.makeText(this, "No item added in cart!!!", Toast.LENGTH_SHORT).show();
         }else {
-            //replaceFragment(new CartFragment());
+            replaceFragment(new CartFragment());
         }
     }
 
@@ -311,5 +321,10 @@ public class EmployeeActivity extends AppCompatActivity
         navLogin.setVisible(true);
         navAccnt.setVisible(false);
         navLogout.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onListFragmentInteraction(Object item) {
+
     }
 }

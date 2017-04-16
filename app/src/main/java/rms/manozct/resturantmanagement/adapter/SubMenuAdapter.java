@@ -53,9 +53,9 @@ public class SubMenuAdapter extends RecyclerView.Adapter<SubMenuAdapter.ViewHold
         /*String url = holder.mItem.getImages();*/
 
         Glide.with(employeeActivity)
-                .load(R.drawable.ic_shopping_cart)
+                .load(R.drawable.appetizer)
                 .fitCenter()
-                .placeholder(R.drawable.ic_shopping_cart)
+                .placeholder(R.drawable.appetizer)
                 .crossFade()
                 .into(holder.image);
 

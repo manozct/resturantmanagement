@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="2dp"
+    android:layout_margin="3dp"
+    card_view:cardBackgroundColor="@color/white"
+    card_view:cardCornerRadius="4dp"
+    android:elevation="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            card_view:cardCornerRadius="2dp"
+            android:layout_margin="10dp"
+            android:foreground="@color/black_transparent">
+        <ImageView
+            android:id="@+id/product_img"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/appetizer"/>
+        </android.support.v7.widget.CardView>
+        <TextView
+            android:id="@+id/product_name"
+            android:layout_toRightOf="@id/card_img"
+            android:text="Lenovo And other long description"
+            style="@style/product_name_text_view"
+            />
+        <TextView
+            android:id="@+id/product_cost"
+            android:text="Rs.100000"
+            android:layout_toRightOf="@id/card_img"
+            android:layout_below="@id/product_name"
+            style="@style/product_cost_text_view"
+            />
+
+        <TextView
+            android:id="@+id/product_quantity_text"
+            android:text="Quantity:"
+            android:layout_toRightOf="@id/card_img"
+            android:layout_below="@id/product_cost"
+            style="@style/product_quantity_text_view"
+            />
+
+        <TextView
+            android:id="@+id/product_quantity"
+            android:text="1"
+            android:layout_toRightOf="@id/product_quantity_text"
+            android:layout_toEndOf="@+id/btn_cross"
+            android:layout_below="@id/product_cost"
+            style="@style/product_quantity_text_view"
+            />
+
+        <Button
+            android:id="@+id/btn_cross"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="3dp"
+            android:elevation="4dp"
+            android:paddingTop="11dp"
+            android:drawableTop="@drawable/ic_cross"
+            android:background="@drawable/cross_selector"
+            android:layout_below="@+id/product_quantity"
+            android:layout_toEndOf="@+id/card_img"
+             />
+
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="3dp"
+            android:elevation="4dp"
+            android:paddingTop="11dp"
+            android:drawableTop="@drawable/ic_add"
+            android:background="@drawable/add_selector"
+            android:layout_below="@+id/product_quantity"
+            android:layout_toEndOf="@+id/btn_cross"
+            />
+
+        <Button
+            android:id="@+id/btn_minus"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="3dp"
+            android:elevation="4dp"
+            android:paddingTop="11dp"
+            android:drawableTop="@drawable/ic_minus"
+            android:background="@drawable/minus_selector"
+            android:layout_below="@+id/product_quantity"
+            android:layout_toEndOf="@+id/btn_add"
+            />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

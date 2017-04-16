@@ -73,7 +73,7 @@ public final class RmsDb extends SQLiteOpenHelper{
 		private static final String CREATE_MENU_TABLE = "CREATE TABLE IF NOT EXISTS "
 				+ MENU_TABLE + " (" +
 				MENU_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-				MENU_NAME+ " TEXT,"+
+				MENU_NAME+ " TEXT"+
 
 				")";
 	}
