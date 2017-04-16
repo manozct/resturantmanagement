@@ -101,7 +101,6 @@ public class LoginFragment extends Fragment {
              }
         });
 
-
         return view;
     }
     public boolean checkLogin(String name,String pswd){

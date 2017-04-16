@@ -102,7 +102,7 @@ public class SelectSubmenuFragment extends Fragment {
 
                     // ListView Clicked item value
                     String  itemValue    = (String) listView.getItemAtPosition(position);
-                    EmployeeActivity.replaceFragment(new SubMenuFragment());
+//                    EmployeeActivity.replaceFragment(new SubMenuFragment());
                     // Show Alert
 //                Toast.makeText(getActivity().getApplicationContext(),
 //                        "Position :"+itemPosition+"  ListItem : " +itemValue , Toast.LENGTH_LONG)

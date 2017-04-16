@@ -63,6 +63,7 @@ public class EmployeeActivity extends AppCompatActivity
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     private static FragmentManager fragmentManager;
+    public static Employee loginEmployee;
     private boolean doubleBackToExitPressedOnce = false;
 
     private Toolbar toolbar;
