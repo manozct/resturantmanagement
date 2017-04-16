@@ -14,10 +14,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import rms.manozct.resturantmanagement.R;
 import rms.manozct.resturantmanagement.activity.EmployeeActivity;
+import rms.manozct.resturantmanagement.fragment.SubMenuListFragment;
 import rms.manozct.resturantmanagement.model.SubMenu;
 
 /**
@@ -26,10 +29,10 @@ import rms.manozct.resturantmanagement.model.SubMenu;
 
 public class SubMenuAdapter extends RecyclerView.Adapter<SubMenuAdapter.ViewHolder>{
     private final List<SubMenu> mValues;
-    private final OnListFragmentInteractionListener mListener;
+    private final SubMenuListFragment.OnFragmentInteractionListener mListener;
     private EmployeeActivity employeeActivity;
 
-    public SubMenuAdapter(List<SubMenu> items, OnListFragmentInteractionListener listener, EmployeeActivity employeeActivity) {
+    public SubMenuAdapter(List<SubMenu> items, SubMenuListFragment.OnFragmentInteractionListener listener, EmployeeActivity employeeActivity) {
         mValues = items;
         mListener = listener;
         this.employeeActivity = employeeActivity;
@@ -47,14 +50,14 @@ public class SubMenuAdapter extends RecyclerView.Adapter<SubMenuAdapter.ViewHold
         holder.descriptionText.setText(holder.mItem.getSubMenuName());
         holder.priceText.setText("$"+holder.mItem.getPrice());
 
-        /*String url = holder.mItem.getImages();
+        /*String url = holder.mItem.getImages();*/
 
-        Glide.with(mainActivity)
-                .load(url)
+        Glide.with(employeeActivity)
+                .load(R.drawable.ic_shopping_cart)
                 .fitCenter()
                 .placeholder(R.drawable.ic_shopping_cart)
                 .crossFade()
-                .into(holder.image);*/
+                .into(holder.image);
 
         holder.cartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,9 +113,11 @@ public class SubMenuAdapter extends RecyclerView.Adapter<SubMenuAdapter.ViewHold
             return super.toString() + " '" + priceText.getText() + "'";
         }
 
-        public void setProducts(List<SubMenu> data) {
-            mValues.addAll(data);
-            notifyDataSetChanged();
-        }
+
+    }
+
+    public void setSubMenu(List<SubMenu> data) {
+        mValues.addAll(data);
+        notifyDataSetChanged();
     }
 }
