@@ -44,6 +44,7 @@ SubMenuFragment extends Fragment {
     private EditText subMenuText;
     private Spinner menuName;
     private EditText imageName;
+    private EditText priceSubMenu;
     ArrayAdapter<String> dataAdapter;
     Uri selectedImage;
     private Button btnSubmitSubMenu;
@@ -78,6 +79,7 @@ SubMenuFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_sub_menu, container, false);
         subMenuText = (EditText) view.findViewById(R.id.subMenuTxt);
         menuName=(Spinner)view.findViewById(R.id.mainMenuSpinner);
+        priceSubMenu=(EditText)view.findViewById(R.id.subMenuPriceTxt);
         imageName=(EditText) view.findViewById(R.id.menuImageId);
         btnSubmitSubMenu=(Button)view.findViewById(R.id.submitSubMenu);
         LoadAllMenuList();
@@ -131,6 +133,7 @@ SubMenuFragment extends Fragment {
         //Getting input from user and setting to employee model
         sMenu.setMainMenuId(getMenuIdFrmName(menuName.getSelectedItem().toString()));
         sMenu.setSubMenuName(subMenuText.getText().toString());
+        sMenu.setPrice(Double.parseDouble(priceSubMenu.getText().toString()));
         sMenu.setImageUrl(selectedImage.toString());
 
         System.out.println("Menu id:"+sMenu.getMainMenuId());
