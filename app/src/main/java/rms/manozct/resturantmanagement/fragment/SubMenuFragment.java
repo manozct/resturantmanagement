@@ -49,6 +49,7 @@ SubMenuFragment extends Fragment {
     Uri selectedImage;
     private Button btnSubmitSubMenu;
     private Button btnDeleteSubMenu;
+    private Button deleteSubMenu;
 
     public static final int SELECT_PHOTO = 100;
 

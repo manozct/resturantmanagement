@@ -1,0 +1,35 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/scrollViewOrderDetailList"
+    android:background="@color/teal"
+    tools:context="rms.manozct.resturantmanagement.fragment.OrderDetailListFragment">
+
+
+    <ScrollView
+        android:id="@+id/hscrll1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/RelativeLayout1"
+            android:layout_width="fill_parent"
+            android:layout_gravity="center"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+
+            <TableLayout
+                android:id="@+id/table_OrderDetailList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true" >
+            </TableLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</ScrollView>
