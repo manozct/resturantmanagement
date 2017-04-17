@@ -22,6 +22,11 @@ public class Employee implements Serializable{
 
     }
 
+    public Employee(String empUserName, Role role) {
+        this.empUserName = empUserName;
+        this.role = role;
+    }
+
     public Double getSalary() {
         return salary;
     }

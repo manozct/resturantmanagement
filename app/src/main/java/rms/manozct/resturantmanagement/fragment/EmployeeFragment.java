@@ -72,6 +72,7 @@ public class EmployeeFragment extends Fragment {
                 isUpdate = true;
             }
         }
+        EmployeeActivity.setTitle("Employee");
     }
 
     @Override

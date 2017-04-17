@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import rms.manozct.resturantmanagement.R;
+import rms.manozct.resturantmanagement.activity.EmployeeActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +60,7 @@ public class TableFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        EmployeeActivity.setTitle("Table");
     }
 
     @Override

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import rms.manozct.resturantmanagement.R;
+import rms.manozct.resturantmanagement.activity.EmployeeActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,6 +67,7 @@ public class PaymentFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        EmployeeActivity.setTitle("Payment");
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_payment, container, false);
 

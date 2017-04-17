@@ -49,7 +49,7 @@ public class EmployeeListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        EmployeeActivity.setTitle("Employee");
     }
 
 

@@ -36,7 +36,7 @@ private Button placeOrderBtn;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_order, container, false);
-        EmployeeActivity.setTitle("Restaurant Management System");
+        EmployeeActivity.setTitle("Order");
         placeOrderBtn=(Button) view.findViewById(R.id.btnPlaceOrder);
         placeOrderBtn.setOnClickListener(new View.OnClickListener()
         {

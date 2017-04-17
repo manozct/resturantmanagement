@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import rms.manozct.resturantmanagement.R;
+import rms.manozct.resturantmanagement.activity.EmployeeActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,7 +37,7 @@ public class InventoryFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        EmployeeActivity.setTitle("Inventory");
     }
 
     @Override

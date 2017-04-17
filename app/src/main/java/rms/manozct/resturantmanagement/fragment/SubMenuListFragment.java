@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ public class SubMenuListFragment extends Fragment {
 
     private Spinner spinner;
 
+    private Button button;
     HashMap<Integer, String> menuMap;
     HashMap<Integer, List<SubMenu>> menuSubMenuMap;
 
@@ -54,7 +56,7 @@ public class SubMenuListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         employeeActivity = (EmployeeActivity) getActivity();
-        employeeActivity.setTitle("Sub Menus");
+        employeeActivity.setTitle("Sub Menu");
 
 
         initMaps();
@@ -81,7 +83,6 @@ public class SubMenuListFragment extends Fragment {
     }
 
     private void initMaps(){
-
         //Db Call
         DbHelper dbHelper = new DbHelper(employeeActivity);
         dbHelper.read();
@@ -158,6 +159,14 @@ public class SubMenuListFragment extends Fragment {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
+            }
+        });
+
+        button = (Button) view.findViewById(R.id.addMenuBtn);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EmployeeActivity.replaceFragment(new SubMenuFragment());
             }
         });
         return view;

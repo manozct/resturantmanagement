@@ -6,6 +6,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
+    <Button
+        style="@style/ButtonNormalSubmit"
+        android:id="@+id/addMenuBtn"
+        android:text="Add New Menu"
+        android:layout_marginBottom="10dp"/>
+
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
@@ -13,6 +19,7 @@
         android:background="@color/bilbao"
         >
     </Spinner>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/product_list"
         android:layout_width="match_parent"

@@ -1,8 +1,6 @@
 package rms.manozct.resturantmanagement.activity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
@@ -24,7 +22,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,8 +83,13 @@ public class EmployeeActivity extends AppCompatActivity
 
     private static Toolbar toolbar;
 
-    MenuItem navLogin;
     MenuItem navAccnt;
+    MenuItem navUser;
+    MenuItem navPlaceOrder;
+    MenuItem navMenu;
+    MenuItem navInventory;
+    MenuItem navSubMenu;
+    MenuItem navReport;
 
     TextView navLogout;
     TextView navUsername;
@@ -113,14 +115,19 @@ public class EmployeeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        navigationView.setCheckedItem(R.id.nav_login);
+        //navigationView.setCheckedItem(R.id.nav_login);
 
         cartList = new ArrayList<>();
 
         Menu menuNav = navigationView.getMenu();
 
         navAccnt = menuNav.findItem(R.id.nav_account);
-        navLogin = menuNav.findItem(R.id.nav_login);
+        navInventory = menuNav.findItem(R.id.nav_inventory);
+        navUser = menuNav.findItem(R.id.nav_user);
+        navMenu = menuNav.findItem(R.id.nav_menu);
+        navSubMenu = menuNav.findItem(R.id.nav_sub_menu);
+        navReport = menuNav.findItem(R.id.nav_report);
+        navPlaceOrder = menuNav.findItem(R.id.nav_place_order);
 
         View hView =  navigationView.getHeaderView(0);
 
@@ -134,11 +141,14 @@ public class EmployeeActivity extends AppCompatActivity
         });
 
         navUsername = (TextView) hView.findViewById(R.id.nav_email);
+
+        initDrawerBeforeLogin();
         if (loginEmployee!=null){
             hideLoginNav();
         }else {
             showLoginNav();
         }
+        replaceFragment(new LoginFragment());
     }
 
     @Override
@@ -203,40 +213,40 @@ public class EmployeeActivity extends AppCompatActivity
             //my Account
             case R.id.nav_account:
                 //if (Role.MANAGER==loginEmployee.getRole()){
-                replaceFragment(new EmployeeListFragment());
+                //replaceFragment(new EmployeeListFragment());
                 /*}else {
                     Toast.makeText(this, "You are not authorized to Add user", Toast.LENGTH_SHORT).show();
                 }*/
                 break;
             //login
-            case R.id.nav_login:
+            /*case R.id.nav_login:
                 replaceFragment(new LoginFragment());
-                break;
+                break;*/
             //for home menu
-            case R.id.nav_dashboard:
-                replaceFragment(new MainFragment());
+            case R.id.nav_place_order:
+                replaceFragment(new SubMenuListFragment());
                 break;
             //for user menu
-            case R.id.nav_category:
+            case R.id.nav_user:
                 //replaceFragment(new SubMenuListFragment());
-                replaceFragment(new SubMenuFragment());
+                replaceFragment(new EmployeeListFragment());
                 break;
 
             //inventory menu
-            case R.id.nav_product:
+            case R.id.nav_inventory:
                 replaceFragment(new CashierFragment());
                 break;
             //menu
-            case R.id.nav_wishlist:
+            case R.id.nav_menu:
                 replaceFragment(new MenuListFragment());
                 break;
             //table
-            case R.id.nav_table:
-                replaceFragment(new SubMenuListFragment());
+            case R.id.nav_sub_menu:
+                replaceFragment(new SubMenuFragment());
                 break;
             //
             case R.id.nav_report:
-                replaceFragment(new EmployeeListFragment());
+                //replaceFragment(new EmployeeListFragment());
                 break;
 
 
@@ -324,16 +334,59 @@ public class EmployeeActivity extends AppCompatActivity
 
     public void hideLoginNav(){
         navLogout.setVisibility(View.VISIBLE);
-        navLogin.setVisible(false);
         navAccnt.setVisible(true);
         navUsername.setText(loginEmployee.getEmpUserName());
     }
 
     public void showLoginNav(){
-        navLogin.setVisible(true);
         navAccnt.setVisible(false);
         navLogout.setVisibility(View.GONE);
         navUsername.setText(" ");
+    }
+
+
+    public void customizeNavDrawer(){
+        switch (loginEmployee.getRole()){
+            case MANAGER:
+                roleManager();
+                break;
+            case CASHIER:
+                roleCashier();
+                break;
+            case WAITER:
+                roleWaiter();
+                break;
+        }
+    }
+    public void initDrawerBeforeLogin(){
+        navMenu.setVisible(false);
+        navSubMenu.setVisible(false);
+        navAccnt.setVisible(false);
+        navUser.setVisible(false);
+        navReport.setVisible(false);
+        navInventory.setVisible(false);
+        navPlaceOrder.setVisible(false);
+    }
+
+    public void roleWaiter(){
+        initDrawerBeforeLogin();
+        navAccnt.setVisible(true);
+        navPlaceOrder.setVisible(true);
+    }
+
+    public void roleManager(){
+        navMenu.setVisible(true);
+        navSubMenu.setVisible(true);
+        navAccnt.setVisible(true);
+        navUser.setVisible(true);
+        navReport.setVisible(true);
+        navInventory.setVisible(true);
+        navPlaceOrder.setVisible(true);
+    }
+
+    public void roleCashier(){
+        initDrawerBeforeLogin();
+        navAccnt.setVisible(true);
     }
 
     @Override

@@ -77,7 +77,7 @@ public class PlaceOrderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_place_order, container, false);
-        EmployeeActivity.setTitle("Place Order Here");
+        EmployeeActivity.setTitle("Place Order");
         listView=(ListView) view.findViewById(R.id.menuList);
         Spinner spin=(Spinner) listView.findViewById(R.id.spinner);
         spinner=(Spinner)view.findViewById(R.id.spinnerTable) ;

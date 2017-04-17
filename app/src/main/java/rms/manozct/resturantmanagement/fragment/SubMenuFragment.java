@@ -68,7 +68,7 @@ SubMenuFragment extends Fragment {
         if (bundle!=null){
             subMenu = (SubMenu) bundle.getSerializable("SubMenu");
         }
-
+        EmployeeActivity.setTitle("Sub Menu");
     }
 
     @Override

@@ -42,7 +42,7 @@ public class MenuListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        EmployeeActivity.setTitle("Menu");
     }
 
     @Override
