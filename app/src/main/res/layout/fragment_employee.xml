@@ -101,10 +101,14 @@
     style="@style/info_text_view"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Salary"/>
+    android:text="Salary"
+    />
+
     <EditText
         style="@style/info_edit_text"
-        android:id="@+id/salary"/>
+        android:id="@+id/salary"
+        android:inputType="number"
+        />
 
     <Button
         style="@style/ButtonNormalSubmit"
