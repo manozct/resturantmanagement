@@ -25,6 +25,7 @@ public final class RmsDb extends SQLiteOpenHelper{
 		static final String SSN = "ssn";
 		static final String HIRE_DAY = "hireDay";
 		static final String POSITION = "position";
+		static final String SALARY = "salary";
 
 		//Create Query for Employee table
 		static final String CREATE_EMPLOYEE_TABLE = "CREATE TABLE IF NOT EXISTS "+EMP_TABLE+" (" +
@@ -37,6 +38,7 @@ public final class RmsDb extends SQLiteOpenHelper{
 				CONTACT_NO + " TEXT, " +
 				SSN + " TEXT, " +
 				HIRE_DAY + " TEXT, " +
+				SALARY + " TEXT, " +
 				POSITION + " TEXT" +
 				")";
 

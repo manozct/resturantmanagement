@@ -122,7 +122,7 @@ public class EmployeeListFragment extends Fragment {
         List<Employee> employees = dbHelper.getEmployee(null);
         System.out.println(employees);
         for (int i = 0; i < employees.size(); i++) {
-            System.out.println("employee id:"+employees.get(i).getEmpId());
+
             TableRow tbrow = new TableRow(getActivity());
 
             if(i%2==0){
@@ -141,6 +141,7 @@ public class EmployeeListFragment extends Fragment {
             t2v.setTextColor(Color.WHITE);
             t2v.setGravity(Gravity.CENTER);
             tbrow.addView(t2v);
+
             TextView t3v = new TextView(getActivity());
             t3v.setText(employees.get(i).getEmpUserName());
             //System.out.println(employees.get(i).getEmpUserName());
@@ -161,6 +162,7 @@ public class EmployeeListFragment extends Fragment {
             t3v.setTextSize( 15f);
             t4v.setTextSize( 15f);
             final Employee emp = employees.get(i);
+            System.out.println("Employee:"+emp);
             tbrow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

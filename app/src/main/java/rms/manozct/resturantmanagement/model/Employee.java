@@ -167,5 +167,20 @@ public class Employee implements Serializable{
         this.empName = name;
     }
 
-
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "empId=" + empId +
+                ", empName='" + empName + '\'' +
+                ", empUserName='" + empUserName + '\'' +
+                ", empPassword='" + empPassword + '\'' +
+                ", address='" + address + '\'' +
+                ", dob=" + dob +
+                ", cNo='" + cNo + '\'' +
+                ", ssn='" + ssn + '\'' +
+                ", salary=" + salary +
+                ", hireDay=" + hireDay +
+                ", role=" + role +
+                '}';
+    }
 }

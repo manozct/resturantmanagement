@@ -64,6 +64,7 @@ public class DbHelper
 			emp.setcNo(myCursor.getString(myCursor.getColumnIndex(RmsDb.EmployeeTbl.CONTACT_NO)));
 			emp.setSsn(myCursor.getString(myCursor.getColumnIndex(RmsDb.EmployeeTbl.SSN)));
 			emp.setRole(Role.valueOf(myCursor.getString(myCursor.getColumnIndex(RmsDb.EmployeeTbl.POSITION)) ));
+			emp.setSalary(myCursor.getDouble(myCursor.getColumnIndex(RmsDb.EmployeeTbl.SALARY)));
 			emp.setHireDay(Util.convertStringToDate(myCursor.getString(myCursor.getColumnIndex(RmsDb.EmployeeTbl.HIRE_DAY))));
 
 			employees.add(emp);

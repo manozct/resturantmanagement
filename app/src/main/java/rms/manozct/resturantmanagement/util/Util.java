@@ -10,7 +10,8 @@ import java.util.UUID;
  * Created by Crawlers on 4/12/2017.
  */
 
-public class Util {
+public class Util
+{
 
     public static Date convertStringToDate(String startDateString){
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
@@ -20,7 +21,7 @@ public class Util {
             {
                 startDate = df.parse(startDateString);
                 String newDateString = df.format(startDate);
-                System.out.println(newDateString);
+                System.out.println("Date:::"+newDateString);
             }
         } catch (ParseException e) {
             e.printStackTrace();
@@ -28,6 +29,15 @@ public class Util {
         return startDate;
     }
 
+    public static boolean isCorrectDate(String dateString)
+    {
+
+            if(convertStringToDate(dateString)!=null) {
+                return true;
+            }
+            return false;
+
+    }
     public static String getRandomId(){
         return UUID.randomUUID().toString().substring(0,7);
     }
