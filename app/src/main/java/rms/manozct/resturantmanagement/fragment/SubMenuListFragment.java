@@ -169,6 +169,9 @@ public class SubMenuListFragment extends Fragment {
                 EmployeeActivity.replaceFragment(new SubMenuFragment());
             }
         });
+        if (EmployeeActivity.loginEmployee!=null && EmployeeActivity.loginEmployee.getRole()!=Role.MANAGER){
+            button.setVisibility(View.GONE);
+        }
         return view;
     }
 

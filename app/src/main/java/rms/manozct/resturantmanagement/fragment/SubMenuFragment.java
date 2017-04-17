@@ -48,6 +48,7 @@ SubMenuFragment extends Fragment {
     ArrayAdapter<String> dataAdapter;
     Uri selectedImage;
     private Button btnSubmitSubMenu;
+    private Button btnDeleteSubMenu;
 
     public static final int SELECT_PHOTO = 100;
 
@@ -82,6 +83,7 @@ SubMenuFragment extends Fragment {
         priceSubMenu=(EditText)view.findViewById(R.id.subMenuPriceTxt);
         imageName=(EditText) view.findViewById(R.id.menuImageId);
         btnSubmitSubMenu=(Button)view.findViewById(R.id.submitSubMenu);
+        btnDeleteSubMenu=(Button)view.findViewById(R.id.deleteSubMenu);
         LoadAllMenuList();
         imageName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +100,9 @@ SubMenuFragment extends Fragment {
             }
         });
 
+        if (EmployeeActivity.loginEmployee!=null && EmployeeActivity.loginEmployee.getRole()!=Role.MANAGER){
+            deleteSubMenu.setVisibility(View.GONE);
+        }
 
         return view;
     }
