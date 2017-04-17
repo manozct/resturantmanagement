@@ -84,7 +84,7 @@ public class SubMenuListFragment extends Fragment {
 
     private void initMaps(){
         //Db Call
-        DbHelper dbHelper = new DbHelper(employeeActivity);
+        DbHelper dbHelper = DbHelper.getDbHelper(employeeActivity);
         dbHelper.read();
         List<Menu> menus = dbHelper.getMenuList(null);
         List<SubMenu> subMenusAll = dbHelper.getSubMenu(null);

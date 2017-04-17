@@ -94,7 +94,7 @@ public class MenuFragment extends Fragment {
         //Getting input from user and setting to employee model
         menuItem.setMenuName(menuText.getText().toString());
         //TODO other setter
-        DbHelper dbHelper = new DbHelper(getActivity());
+        DbHelper dbHelper = DbHelper.getDbHelper(getActivity());
         dbHelper.write();
         try {
            if (isUpdate){
@@ -126,7 +126,7 @@ public class MenuFragment extends Fragment {
        // System.out.println("delete method");
        // System.out.println("delete emp ID:"+employee.getEmpId());
 
-        DbHelper dbHelper = new DbHelper(getActivity());
+        DbHelper dbHelper = DbHelper.getDbHelper(getActivity());
         dbHelper.write();
         dbHelper.deleteMenu(menu.getMenuId());
         Toast.makeText(getActivity(), "Menu deleted successfully", Toast.LENGTH_SHORT).show();

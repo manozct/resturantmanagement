@@ -116,7 +116,7 @@ public class EmployeeListFragment extends Fragment {
         tv3.setTextColor(Color.WHITE);
         tbrow0.addView(tv3);
         stk.addView(tbrow0);
-        DbHelper dbHelper = new DbHelper(getActivity());
+        DbHelper dbHelper = DbHelper.getDbHelper(getActivity());
         dbHelper.write();
 
         List<Employee> employees = dbHelper.getEmployee(null);

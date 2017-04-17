@@ -251,7 +251,7 @@ public class EmployeeFragment extends Fragment {
         emp.setRole((Role) spinnerPosition.getSelectedItem());
 
         //TODO other setter
-        DbHelper dbHelper = new DbHelper(getActivity());
+        DbHelper dbHelper = DbHelper.getDbHelper(getActivity());
         dbHelper.write();
         try {
 
@@ -281,7 +281,7 @@ public class EmployeeFragment extends Fragment {
         // System.out.println("delete method");
         // System.out.println("delete emp ID:"+employee.getEmpId());
 
-        DbHelper dbHelper = new DbHelper(getActivity());
+        DbHelper dbHelper = DbHelper.getDbHelper(getActivity());
         dbHelper.write();
         dbHelper.deleteEmployee(employee.getEmpId());
         Toast.makeText(getActivity(), "Data deleted successfully", Toast.LENGTH_SHORT).show();

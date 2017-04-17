@@ -110,7 +110,7 @@ public class LoginFragment extends Fragment {
         return view;
     }
     public boolean checkLogin(String name,String pswd){
-        DbHelper dbHelper = new DbHelper(getActivity());
+        DbHelper dbHelper = DbHelper.getDbHelper(getActivity());
         dbHelper.write();
         if (name.equals("admin")&& pswd.equals("admin")){
             EmployeeActivity.loginEmployee = new Employee("Admin", Role.MANAGER);

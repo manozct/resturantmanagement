@@ -155,7 +155,7 @@ SubMenuFragment extends Fragment {
 
         System.out.println("Menu id:"+sMenu.getMainMenuId());
         //TODO other setter
-        DbHelper dbHelper = new DbHelper(getActivity());
+        DbHelper dbHelper = DbHelper.getDbHelper(getActivity());
         dbHelper.write();
         try {
             dbHelper.insertSubMenu(sMenu);
@@ -177,7 +177,7 @@ SubMenuFragment extends Fragment {
     }
     void LoadAllMenuList(){
         System.out.println("inside LoadAllMenuList");
-        DbHelper dbHelper = new DbHelper(getActivity());
+        DbHelper dbHelper = DbHelper.getDbHelper(getActivity());
         dbHelper.write();
         menus = dbHelper.getMenuList(null);
         List<String>menuList=new ArrayList<String>();

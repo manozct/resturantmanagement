@@ -132,7 +132,7 @@ public class PlaceOrderFragment extends Fragment {
      * */
     private void loadSpinnerData() {
         // database handler
-        DbHelper db = new DbHelper(getActivity()
+        DbHelper db = DbHelper.getDbHelper(getActivity()
         );
 
 //        // Spinner Drop down elements

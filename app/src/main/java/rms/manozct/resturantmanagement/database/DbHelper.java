@@ -27,7 +27,7 @@ public class DbHelper
 	private RmsDb rmsDb;
 	Context context;
 
-	public DbHelper(Context context) {
+	private DbHelper(Context context) {
 		this.context = context;
 		rmsDb = new RmsDb(context);
 	}

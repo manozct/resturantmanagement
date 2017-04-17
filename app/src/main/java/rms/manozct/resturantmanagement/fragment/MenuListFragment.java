@@ -74,7 +74,7 @@ public class MenuListFragment extends Fragment {
         tv1.setTextColor(Color.WHITE);
         tbrow0.addView(tv1);
         stk.addView(tbrow0);
-        DbHelper dbHelper = new DbHelper(getActivity());
+        DbHelper dbHelper = DbHelper.getDbHelper(getActivity());
         dbHelper.write();
 
         final List<Menu> menus = dbHelper.getMenuList(null);
