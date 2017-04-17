@@ -135,8 +135,7 @@ public class EmployeeActivity extends AppCompatActivity
         navLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showLoginNav();
-                loginEmployee = null;
+                logout();
             }
         });
 
@@ -149,6 +148,23 @@ public class EmployeeActivity extends AppCompatActivity
             showLoginNav();
         }
         replaceFragment(new LoginFragment());
+    }
+
+    public void logout(){
+        showLoginNav();
+        loginEmployee = null;
+        initDrawerBeforeLogin();
+        cartList.clear();
+
+        if (fragmentManager.getBackStackEntryCount() > 0) {
+            FragmentManager.BackStackEntry first = fragmentManager.getBackStackEntryAt(0);
+            fragmentManager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
+
+        replaceFragment(new LoginFragment());
+        drawer.closeDrawer(GravityCompat.START);
+
+
     }
 
     @Override

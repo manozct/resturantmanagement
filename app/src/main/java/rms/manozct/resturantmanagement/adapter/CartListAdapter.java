@@ -50,9 +50,11 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
 
         String url = holder.mItem.getImageUrl();
 
-        Uri uri = Uri.parse(url);
+        if (url!=null){
+            Uri uri = Uri.parse(url);
 
-        url = Util.getImagePath(uri, mainActivity);
+            url = Util.getImagePath(uri, mainActivity);
+        }
 
         Glide.with(mainActivity.getApplicationContext())
                 .load(url)

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.Settings;
+import android.renderscript.Double2;
 
 import static rms.manozct.resturantmanagement.database.RmsDb.OrderTbl.CREATE_ORDER_TABLE;
 import static rms.manozct.resturantmanagement.database.RmsDb.OrderTbl.SUBMENU_ID;
@@ -53,16 +54,19 @@ public final class RmsDb extends SQLiteOpenHelper{
 		static final String SUBMENU_ID = "subMenuId";
 		static final String TABLE_ID = "tableId";
 		static final String ORDER_DATE = "orderDate";
+		static final String ORDER_QUANTITY = "orderQuantity";
+		static final String ORDER_PRICE = "orderPrice";
 
 
 		//Create Query for Order table
 		static final String CREATE_ORDER_TABLE = "CREATE TABLE IF NOT EXISTS " + ORDER_TABLE + " (" +
 				ORDER_ID + " INTEGER PRIMARY KEY , " +
-				WAITER_ID+ " INTEGER,"+
-				SUBMENU_ID+"INTEGER" +
-				TABLE_ID+" INTEGER"+
+				WAITER_ID+ " INTEGER ,"+
+				SUBMENU_ID+"INTEGER ," +
+				TABLE_ID+" INTEGER ,"+
+				ORDER_QUANTITY+" INTEGER ,"+
+				ORDER_PRICE+" DOUBLE ,"+
 				ORDER_DATE+" TEXT"+
-
 				")";
 	}
 

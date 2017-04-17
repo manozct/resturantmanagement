@@ -76,6 +76,8 @@ public class MenuFragment extends Fragment {
         });
         if (isUpdate){
             setUpdateMenu();
+        }else {
+            deleteBtn.setVisibility(View.GONE);
         }
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override

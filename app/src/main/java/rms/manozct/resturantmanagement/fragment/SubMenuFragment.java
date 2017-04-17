@@ -5,15 +5,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -23,11 +20,9 @@ import java.util.List;
 import rms.manozct.resturantmanagement.R;
 import rms.manozct.resturantmanagement.activity.EmployeeActivity;
 import rms.manozct.resturantmanagement.database.DbHelper;
-import rms.manozct.resturantmanagement.model.Employee;
 import rms.manozct.resturantmanagement.model.Menu;
 import rms.manozct.resturantmanagement.model.Role;
 import rms.manozct.resturantmanagement.model.SubMenu;
-import rms.manozct.resturantmanagement.util.Util;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -42,9 +37,9 @@ import static android.app.Activity.RESULT_OK;
 public class
 SubMenuFragment extends Fragment {
     private EditText subMenuText;
-    private Spinner menuName;
-    private EditText imageName;
-    private EditText priceSubMenu;
+    private Spinner menuNameSpinner;
+    private EditText imageNameTxt;
+    private EditText priceSubMenuTxt;
     ArrayAdapter<String> dataAdapter;
     Uri selectedImage;
     private Button btnSubmitSubMenu;
@@ -58,6 +53,7 @@ SubMenuFragment extends Fragment {
 
     SubMenu subMenu;
 
+    boolean isUpdate = false;
     public SubMenuFragment() {
         // Required empty public constructor
     }
@@ -69,6 +65,9 @@ SubMenuFragment extends Fragment {
         Bundle bundle = getArguments();
         if (bundle!=null){
             subMenu = (SubMenu) bundle.getSerializable("SubMenu");
+            if (subMenu!=null){
+                isUpdate = true;
+            }
         }
         EmployeeActivity.setTitle("Sub Menu");
     }
@@ -79,13 +78,13 @@ SubMenuFragment extends Fragment {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_sub_menu, container, false);
         subMenuText = (EditText) view.findViewById(R.id.subMenuTxt);
-        menuName=(Spinner)view.findViewById(R.id.mainMenuSpinner);
-        priceSubMenu=(EditText)view.findViewById(R.id.subMenuPriceTxt);
-        imageName=(EditText) view.findViewById(R.id.menuImageId);
+        menuNameSpinner =(Spinner)view.findViewById(R.id.mainMenuSpinner);
+        priceSubMenuTxt =(EditText)view.findViewById(R.id.subMenuPriceTxt);
+        imageNameTxt =(EditText) view.findViewById(R.id.menuImageId);
         btnSubmitSubMenu=(Button)view.findViewById(R.id.submitSubMenu);
         btnDeleteSubMenu=(Button)view.findViewById(R.id.deleteSubMenu);
         LoadAllMenuList();
-        imageName.setOnClickListener(new View.OnClickListener() {
+        imageNameTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
@@ -101,10 +100,20 @@ SubMenuFragment extends Fragment {
         });
 
         if (EmployeeActivity.loginEmployee!=null && EmployeeActivity.loginEmployee.getRole()!=Role.MANAGER){
-            deleteSubMenu.setVisibility(View.GONE);
+            btnDeleteSubMenu.setVisibility(View.GONE);
         }
-
+        if (isUpdate){
+            setUpdateData();
+        }else {
+            btnDeleteSubMenu.setVisibility(View.GONE);
+        }
         return view;
+    }
+
+    void setUpdateData() {
+        subMenuText.setText(subMenu.getSubMenuName());
+        priceSubMenuTxt.setText(subMenu.getPrice().toString());
+        imageNameTxt.setText(subMenu.getImageUrl());
     }
 
     @Override
@@ -117,7 +126,7 @@ SubMenuFragment extends Fragment {
                     selectedImage = imageReturnedIntent.getData();
                     System.out.println("Selected Image URl"+selectedImage);
                     Toast.makeText(getActivity(), "Got Image:"+selectedImage.toString(), Toast.LENGTH_LONG);
-                    imageName.setText(selectedImage.toString());
+                    imageNameTxt.setText(selectedImage.toString());
                     /*InputStream imageStream = getContentResolver().openInputStream(selectedImage);
                     Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);*/
                 }
@@ -136,10 +145,12 @@ SubMenuFragment extends Fragment {
     public void submitSubMenuData(){
         SubMenu sMenu = new SubMenu();
         //Getting input from user and setting to employee model
-        sMenu.setMainMenuId(getMenuIdFrmName(menuName.getSelectedItem().toString()));
+        sMenu.setMainMenuId(getMenuIdFrmName(menuNameSpinner.getSelectedItem().toString()));
         sMenu.setSubMenuName(subMenuText.getText().toString());
-        sMenu.setPrice(Double.parseDouble(priceSubMenu.getText().toString()));
-        sMenu.setImageUrl(selectedImage.toString());
+        sMenu.setPrice(Double.parseDouble(priceSubMenuTxt.getText().toString()));
+        if (selectedImage!=null){
+            sMenu.setImageUrl(selectedImage.toString());
+        }
 
         System.out.println("Menu id:"+sMenu.getMainMenuId());
         //TODO other setter
@@ -181,7 +192,7 @@ SubMenuFragment extends Fragment {
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // attaching data adapter to spinner
-        menuName.setAdapter(dataAdapter);
+        menuNameSpinner.setAdapter(dataAdapter);
 
     }
 

@@ -128,6 +128,8 @@ public class EmployeeFragment extends Fragment {
 
         if (isUpdate) {
             setUpdateData();
+        }else {
+            deleteBtn.setVisibility(View.GONE);
         }
         return view;
     }
@@ -217,9 +219,6 @@ public class EmployeeFragment extends Fragment {
         // hireDate.setText(employee.getHireDay().toString());
         int position = (dataAdapter.getPosition(employee.getRole()));
         spinnerPosition.setSelection(position);
-
-
-        //TODO
     }
 
     public void replaceFragment(Fragment newFragment) {

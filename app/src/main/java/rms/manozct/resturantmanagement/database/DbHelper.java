@@ -22,6 +22,7 @@ import rms.manozct.resturantmanagement.util.Util;
 
 public class DbHelper
 {
+	private static DbHelper dbHelper;
 	private SQLiteDatabase database;
 	private RmsDb rmsDb;
 	Context context;
@@ -29,6 +30,13 @@ public class DbHelper
 	public DbHelper(Context context) {
 		this.context = context;
 		rmsDb = new RmsDb(context);
+	}
+
+	public static DbHelper getDbHelper(Context context){
+		if (dbHelper==null){
+			dbHelper = new DbHelper(context);
+		}
+		return dbHelper;
 	}
 
 	public void read() throws SQLException {
@@ -283,6 +291,8 @@ public class DbHelper
 			order.setSubMenuId(myCursor.getInt(myCursor.getColumnIndex(RmsDb.OrderTbl.SUBMENU_ID)));
 			order.setWaiterId(myCursor.getInt(myCursor.getColumnIndex(RmsDb.OrderTbl.WAITER_ID)));
 			order.setOrderDate(myCursor.getString(myCursor.getColumnIndex(RmsDb.OrderTbl.ORDER_DATE)));
+			order.setPrice(myCursor.getDouble(myCursor.getColumnIndex(RmsDb.OrderTbl.ORDER_PRICE.toString())));
+			order.setQuantity(myCursor.getInt(myCursor.getColumnIndex(RmsDb.OrderTbl.ORDER_QUANTITY.toString())));
 
 			orders.add(order);
 			myCursor.moveToNext();
@@ -297,6 +307,8 @@ public class DbHelper
 		cv.put(RmsDb.OrderTbl.WAITER_ID,order.getWaiterId());
 		cv.put(RmsDb.OrderTbl.ORDER_DATE, order.getOrderDate());
 		cv.put(RmsDb.OrderTbl.SUBMENU_ID,order.getSubMenuId());
+		cv.put(RmsDb.OrderTbl.ORDER_PRICE,order.getPrice());
+		cv.put(RmsDb.OrderTbl.ORDER_QUANTITY,order.getQuantity());
 
 		return database.insert(RmsDb.OrderTbl.ORDER_TABLE,null,cv);
 
