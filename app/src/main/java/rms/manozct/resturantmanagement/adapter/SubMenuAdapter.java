@@ -1,7 +1,10 @@
 package rms.manozct.resturantmanagement.adapter;
 
+import android.database.Cursor;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
@@ -20,12 +23,10 @@ import java.util.List;
 
 import rms.manozct.resturantmanagement.R;
 import rms.manozct.resturantmanagement.activity.EmployeeActivity;
+import rms.manozct.resturantmanagement.fragment.SubMenuFragment;
 import rms.manozct.resturantmanagement.fragment.SubMenuListFragment;
 import rms.manozct.resturantmanagement.model.SubMenu;
-
-/**
- * Created by Crawlers on 4/15/2017.
- */
+import rms.manozct.resturantmanagement.util.Util;
 
 public class SubMenuAdapter extends RecyclerView.Adapter<SubMenuAdapter.ViewHolder>{
     private final List<SubMenu> mValues;
@@ -44,16 +45,21 @@ public class SubMenuAdapter extends RecyclerView.Adapter<SubMenuAdapter.ViewHold
         return new ViewHolder(view);
     }
 
+
+
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.descriptionText.setText(holder.mItem.getSubMenuName());
         holder.priceText.setText("$"+holder.mItem.getPrice());
 
-        /*String url = holder.mItem.getImages();*/
+        String url = holder.mItem.getImageUrl();
 
+        Uri uri = Uri.parse(url);
+
+        url = Util.getImagePath(uri, employeeActivity);
         Glide.with(employeeActivity)
-                .load(R.drawable.appetizer)
+                .load(url)
                 .fitCenter()
                 .placeholder(R.drawable.appetizer)
                 .crossFade()
@@ -63,6 +69,17 @@ public class SubMenuAdapter extends RecyclerView.Adapter<SubMenuAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 employeeActivity.addToCart(holder.mItem);
+            }
+        });
+
+        holder.detailBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SubMenuFragment subMenuFragment = new SubMenuFragment();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("SubMenu", holder.mItem);
+                subMenuFragment.setArguments(bundle);
+                EmployeeActivity.replaceFragment(subMenuFragment);
             }
         });
 
@@ -88,7 +105,6 @@ public class SubMenuAdapter extends RecyclerView.Adapter<SubMenuAdapter.ViewHold
         public final View mView;
         public final TextView descriptionText;
         public final TextView priceText;
-        //public final RatingBar ratingBar;
         public final ImageView image;
         public final Button cartBtn;
         public final Button favBtn;
@@ -100,7 +116,6 @@ public class SubMenuAdapter extends RecyclerView.Adapter<SubMenuAdapter.ViewHold
             mView = view;
             descriptionText = (TextView) view.findViewById(R.id.description);
             priceText = (TextView) view.findViewById(R.id.cost);
-            //ratingBar = (RatingBar) view.findViewById(R.id.ratingBar);
             image = (ImageView) view.findViewById(R.id.photo);
 
             cartBtn = (Button) view.findViewById(R.id.btn_cart);
@@ -117,6 +132,7 @@ public class SubMenuAdapter extends RecyclerView.Adapter<SubMenuAdapter.ViewHold
     }
 
     public void setSubMenu(List<SubMenu> data) {
+        mValues.clear();
         mValues.addAll(data);
         notifyDataSetChanged();
     }

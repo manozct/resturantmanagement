@@ -232,7 +232,7 @@ public class EmployeeActivity extends AppCompatActivity
                 break;
             //table
             case R.id.nav_table:
-                replaceFragment(new TableFragment());
+                replaceFragment(new SubMenuListFragment());
                 break;
             //
             case R.id.nav_report:

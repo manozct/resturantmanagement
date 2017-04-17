@@ -19,7 +19,7 @@
 
         <Button
             android:id="@+id/checkoutBtn"
-            android:text="Checkout"
+            android:text="Add Order"
             style="@style/ButtonWithCartIcon"
             android:layout_margin="10dp"/>
     </LinearLayout>

@@ -52,6 +52,10 @@ SubMenuFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    List<Menu> menus;
+
+    SubMenu subMenu;
+
     public SubMenuFragment() {
         // Required empty public constructor
     }
@@ -60,6 +64,10 @@ SubMenuFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+        if (bundle!=null){
+            subMenu = (SubMenu) bundle.getSerializable("SubMenu");
+        }
 
     }
 
@@ -108,14 +116,24 @@ SubMenuFragment extends Fragment {
                 }
         }
     }
+
+    private Integer getMenuIdFrmName(String name){
+       for(Menu menu : menus){
+            if (name.equalsIgnoreCase(menu.getMenuName())){
+                return menu.getMenuId();
+            }
+       }
+        return null;
+    }
+
     public void submitSubMenuData(){
         SubMenu sMenu = new SubMenu();
         //Getting input from user and setting to employee model
-        sMenu.setMainMenuId(menuName.getSelectedItemPosition());
+        sMenu.setMainMenuId(getMenuIdFrmName(menuName.getSelectedItem().toString()));
         sMenu.setSubMenuName(subMenuText.getText().toString());
         sMenu.setImageUrl(selectedImage.toString());
 
-
+        System.out.println("Menu id:"+sMenu.getMainMenuId());
         //TODO other setter
         DbHelper dbHelper = new DbHelper(getActivity());
         dbHelper.write();
@@ -141,7 +159,7 @@ SubMenuFragment extends Fragment {
         System.out.println("inside LoadAllMenuList");
         DbHelper dbHelper = new DbHelper(getActivity());
         dbHelper.write();
-        final List<Menu> menus = dbHelper.getMenuList(null);
+        menus = dbHelper.getMenuList(null);
         List<String>menuList=new ArrayList<String>();
 
         for (int i = 0; i < menus.size(); i++){

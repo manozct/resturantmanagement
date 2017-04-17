@@ -1,5 +1,6 @@
 package rms.manozct.resturantmanagement.adapter;
 
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import java.util.List;
 import rms.manozct.resturantmanagement.R;
 import rms.manozct.resturantmanagement.activity.EmployeeActivity;
 import rms.manozct.resturantmanagement.model.SubMenu;
+import rms.manozct.resturantmanagement.util.Util;
 
 /**
  * Created by Crawlers on 1/11/2017.
@@ -43,11 +45,14 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
     public void onBindViewHolder(final CartListAdapter.ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.descriptionText.setText(holder.mItem.getSubMenuName());
-        holder.priceText.setText("Rs."+holder.mItem.getPrice());
+        holder.priceText.setText("$."+holder.mItem.getPrice());
         holder.quantityText.setText(Integer.toString(1));
 
+        String url = holder.mItem.getImageUrl();
 
-        String url = null;
+        Uri uri = Uri.parse(url);
+
+        url = Util.getImagePath(uri, mainActivity);
 
         Glide.with(mainActivity.getApplicationContext())
                 .load(url)

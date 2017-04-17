@@ -30,7 +30,7 @@
         <item
             android:id="@+id/nav_table"
             android:icon="@drawable/ic_table"
-            android:title="Tables" />
+            android:title="SubMenu" />
     </group>
 
         <item android:title="Settings">

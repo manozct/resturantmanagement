@@ -1,10 +1,12 @@
 package rms.manozct.resturantmanagement.model;
 
+import java.io.Serializable;
+
 /**
  * Created by manozct on 4/10/2017.
  */
 
-public class SubMenu
+public class SubMenu implements Serializable
 {
     private Integer subMenuId;
     private String subMenuName;
@@ -59,5 +61,16 @@ public class SubMenu
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "SubMenu{" +
+                "subMenuId=" + subMenuId +
+                ", subMenuName='" + subMenuName + '\'' +
+                ", price=" + price +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", mainMenuId=" + mainMenuId +
+                '}';
     }
 }

@@ -90,9 +90,9 @@ public final class RmsDb extends SQLiteOpenHelper{
 		static final String CREATE_SUB_MENU_TABLE = "CREATE TABLE IF NOT EXISTS "
 				+ SUB_MENU_TABLE  + " (" +
 				SUB_MENU_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-				MAIN_MENU_ID+ " INTEGER"+
+				MAIN_MENU_ID+ " INTEGER, "+
 				SUB_MENU_NAME+ " TEXT,"+
-				PRICE+" DOUBLE" +
+				PRICE+" DOUBLE, " +
 				SUB_MENU_IMAGE+" TEXT"+
 
 				")";

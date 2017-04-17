@@ -39,7 +39,7 @@ public class CartFragment extends Fragment {
 
         cartListAdapter = new CartListAdapter(cartList, mListener, activity);
         cartListAdapter.setProducts(activity.cartList);
-        activity.setTitle("Cart");
+        activity.setTitle("Finalize Order");
     }
 
     @Override
