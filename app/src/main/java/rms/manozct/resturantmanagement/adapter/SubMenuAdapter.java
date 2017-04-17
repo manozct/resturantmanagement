@@ -55,9 +55,12 @@ public class SubMenuAdapter extends RecyclerView.Adapter<SubMenuAdapter.ViewHold
 
         String url = holder.mItem.getImageUrl();
 
-        Uri uri = Uri.parse(url);
+        if (url!=null){
+            Uri uri = Uri.parse(url);
 
-        url = Util.getImagePath(uri, employeeActivity);
+            url = Util.getImagePath(uri, employeeActivity);
+        }
+
         Glide.with(employeeActivity)
                 .load(url)
                 .fitCenter()

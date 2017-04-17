@@ -11,6 +11,20 @@ public class Order {
     private Integer tableId;
     private Integer waiterId;
     private Integer subMenuId;
+    private Integer quantity;
+    private Double price;
+
+    public Order(){
+
+    }
+    public Order(Integer tableId, Integer waiterId, Integer subMenuId, Integer quantity, Double price, String orderDate) {
+        this.tableId = tableId;
+        this.waiterId = waiterId;
+        this.subMenuId = subMenuId;
+        this.quantity = quantity;
+        this.price = price;
+        this.orderDate = orderDate;
+    }
 
     public Integer getOrderId() {
         return orderId;
@@ -52,5 +66,21 @@ public class Order {
 
     public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }
